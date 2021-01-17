@@ -1,6 +1,7 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
+const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
 
 
 module.exports = {
@@ -12,6 +13,7 @@ module.exports = {
     resolve: {
         extensions: [".ts", ".tsx", ".js"]
     },
+    devtool: 'cheap-module-source-map',
     module: {
         rules: [
             {
@@ -20,7 +22,7 @@ module.exports = {
             },
             {
                 test: /\.js/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /node_modules/,
                 loader: 'babel-loader'
             },
             {
@@ -34,7 +36,8 @@ module.exports = {
             filename: 'index.html',
             template: 'src/index.html'
         }),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new ErrorOverlayPlugin()
     ],
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
@@ -43,6 +46,6 @@ module.exports = {
         open: true,
         historyApiFallback: true,
         hot: true,
-        overlay: true
+        overlay: true,
     }
-}
+} 
