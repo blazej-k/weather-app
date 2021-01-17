@@ -1,13 +1,19 @@
 import React, { FC } from 'react'
 import ReactDOM from 'react-dom'
- 
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import Page from './components/Page'
+import ErrorComponent from './ErrorComponent'
+
 const App: FC = () => {
     return (
-        <>
-            <h1>Hello</h1>
-        </>
+        <Router>
+            <Switch>
+                <Route path='/404' exact component={ErrorComponent} />
+                <Route component={Page} />
+            </Switch>
+        </Router>
     )
 }
 
-ReactDOM.render(<App/>, document.getElementById('root'))
- 
+ReactDOM.render(<App />, document.getElementById('root'))
+
