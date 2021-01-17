@@ -1,8 +1,9 @@
 import React, { FC } from 'react'
+import Header from './header/Header';
  
 const Page: FC = () => {
     return (
-        <h1>Page</h1>
+        <Header/>
     );
 }
  

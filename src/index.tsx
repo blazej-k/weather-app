@@ -8,12 +8,14 @@ const App: FC = () => {
     return (
         <Router>
             <Switch>
-                <Route path='/404' exact component={ErrorComponent} />
-                <Route component={Page} />
+                <Route path='/' exact component={Page} />
+                <Route component={ErrorComponent} />
             </Switch>
         </Router>
     )
 }
 
 ReactDOM.render(<App />, document.getElementById('root'))
+
+module.hot.accept()
 
