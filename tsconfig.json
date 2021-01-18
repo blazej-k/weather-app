@@ -1,18 +1,37 @@
 {
     "compilerOptions": {
-        "target": "es5",
         "module": "commonjs",
+        "target": "es5",
         "noImplicitAny": true,
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": false,
         "jsx": "react",
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "baseUrl": "src",
+        "typeRoots" : ["node_modules/@types", "src/types"],
+        "allowSyntheticDefaultImports": true,
     },
-    "include": [
-        "src/**/*"
-    ], 
-    "exclude": [
-        "build"
-    ]
+    "include": ["src/**/*"],
+    "exclude": ["build", "node_modules"],
 }
+
+// {
+//     "compilerOptions": {
+//         "outDir": "../dist/",
+//         "noImplicitAny": true,
+//         "noImplicitReturns": true,
+//         "noImplicitThis": true,
+//         "sourceMap": true,
+//         "module": "commonjs",
+//         "target": "es6",
+//         "jsx": "react",
+//         "allowJs": true,
+//         "strictNullChecks": true,
+//         "allowSyntheticDefaultImports": true,
+//         "typeRoots": [
+//           "../typings",
+//           "../node_modules/@types"
+//         ]
+//       },
+// }

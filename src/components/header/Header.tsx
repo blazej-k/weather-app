@@ -1,8 +1,15 @@
 import React, { FC } from 'react'
-  
-const Header: FC = () => {
-    return (
-        <h1>Header</h1>
+import { NavLink } from 'react-router-dom'
+import logo from '../../assets/images/logo.png'                       
+      
+const Header: FC = () => { 
+    return (   
+        <div className="header" id='header'>   
+            <div className="logo">     
+                <img src={logo} alt="logo"/>   
+                <h1>Logo</h1>
+            </div>
+        </div>
     );
 }
  
