@@ -1,10 +1,14 @@
 import React, { FC } from 'react'
-import Header from './header/Header';
- 
+import Header from './Header';
+import Slider from './Slider';
+
 const Page: FC = () => {
     return (
-        <Header/>
+        <>
+            <Header />
+            <Slider />
+        </>
     );
 }
- 
+
 export default Page;
