@@ -4,5 +4,9 @@
 # production
 /build
 
-# city id
+# api
 city.list.json
+myapikey
+.env
+
+.DS_Store 
