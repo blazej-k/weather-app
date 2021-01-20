@@ -6,27 +6,39 @@ import Browser from './search/Browser'
 const WeatherWrapper: FC = () => {
 
     const [cityName, setCityName] = useState('')
-    const ENDPOINT = process.env.REACT_APP_API_KEY
-
+    const [weather, setWeather] = useState<any>({})
+    let ENDPOINT = process.env.API_KEY
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-        setCityName(e.target.value)
+        const {value} = e.target
+        setCityName(value)
     }
 
     const getWeather = async() => {
-        // const res = await fetch(API_KEY).then(res => res.json()).catch(() => {
-        //     throw new Error('ups')
-        // })
-        // console.log(res)
-        console.log(ENDPOINT) 
+        const res = await fetch(`${ENDPOINT}${cityName}`)
+        .then(res => {
+            if (!res.ok) {
+                setWeather({})
+                throw new Error('Wrong city');
+            }
+            return res;
+          })
+        .then(res => res.json())
+        .then(res => setWeather(res))
+        .catch((err) => {
+            console.log(err)
+        })
     }
 
     useEffect(() => {
         getWeather()
-    }, [])
+    }, [cityName])
 
     return (
+        <>
         <Browser cityName={cityName} handleInputChange={handleInput}/>
+        {weather?.main?.temp && <h1>{cityName}: {weather.main.temp}</h1>}
+        </>
     );
 }
  

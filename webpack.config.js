@@ -45,6 +45,11 @@ module.exports = () => {
                         }
                     ]
                 },
+                {
+                    test: /\.json/i,
+                    loader: 'json5-loader',
+                    type: 'javascript/auto',
+                  },
             ],
         },
         plugins: [
@@ -53,7 +58,7 @@ module.exports = () => {
                 template: 'src/index.html'
             }),
             new webpack.HotModuleReplacementPlugin(),
-            new webpack.EnvironmentPlugin(['REACT_APP_API_KEY']),
+            new webpack.EnvironmentPlugin(['API_KEY']),
             new ErrorOverlayPlugin()
         ],
         devServer: {
