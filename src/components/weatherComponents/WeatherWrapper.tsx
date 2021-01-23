@@ -10,16 +10,11 @@ const subscription = subject.pipe(
     distinctUntilChanged()
 )
 
-interface State{
-    loading: boolean,
-    error: boolean,
-    weather: any
-}
 
-const initState: State = {
+const initState: WeatherState = {
     loading: false,
     error: false,
-    weather: {}
+    weather: {} as WeatherObj
 }
 
 const WeatherWrapper: FC = () => {
@@ -42,7 +37,7 @@ const WeatherWrapper: FC = () => {
             .then(res => {
                 setWeatherState({...weatherState, loading: false})
                 if (!res.ok) {
-                    setWeatherState({...weatherState, error: true, weather: {}})
+                    setWeatherState({...weatherState, error: true, weather: {} as WeatherObj})
                     throw new Error('Wrong city');
                 }
                 return res;
@@ -61,7 +56,7 @@ const WeatherWrapper: FC = () => {
                 setWeatherState({...weatherState, loading: true})
             }
             else {
-                setWeatherState({...weatherState, weather: {}})
+                setWeatherState({...weatherState, weather: {} as WeatherObj})
             }
         })
         return () => subject.unsubscribe()
@@ -72,8 +67,8 @@ const WeatherWrapper: FC = () => {
     return (
         <>
             {loading && 'Loading...'}
-            {error && "There's no such a city"}
-            {weather.name && <h1>{weather.name}: {weather.main.temp}</h1>}
+            {error && <b>Wrong name of city({cityName})</b>}
+            {Object.entries(weather).length > 0 && <h1>{weather.name}: {weather.main.temp}</h1>}
             <Browser cityName={cityName} handleInputChange={handleInput} />
         </>
     );
