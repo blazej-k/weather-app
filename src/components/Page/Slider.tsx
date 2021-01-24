@@ -10,7 +10,7 @@ const Slider: FC = () => {
             original: '../assets/images/logo.png',
         },
         {
-            original: '../assets/images/zdj2.png'
+            original: '../assets/images/slider/zdj2.png'
         }
     ]
 

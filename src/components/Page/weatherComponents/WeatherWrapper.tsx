@@ -22,7 +22,10 @@ const WeatherWrapper: FC = () => {
 
     const [cityName, setCityName] = useState('')
     const [weatherState, setWeatherState] = useState(initState)
-    let ENDPOINT = process.env.API_KEY
+    const [weatherType, setWeatherType] = useState('')
+    const WEATHER_NOW = process.env.WEATHER_NOW
+    const FUTURE_WEATHER = process.env.FUTURE_WEATHER
+    const { loading, weather, error } = weatherState
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
         weatherState.error && setWeatherState({ ...weatherState, error: true })
@@ -32,9 +35,9 @@ const WeatherWrapper: FC = () => {
     }
 
     const getWeather = async (name: string) => {
-        const URL = `${ENDPOINT}${name.length > 1 ? name[0].toUpperCase() + name.slice(1, name.length) :
+        const ENDPOINT = `${WEATHER_NOW}${name.length > 1 ? name[0].toUpperCase() + name.slice(1, name.length) :
             name[0].toUpperCase()}`
-        await fetch(URL)
+        await fetch(ENDPOINT)
             .then(res => {
                 setWeatherState({ ...weatherState, loading: false })
                 if (!res.ok) {
@@ -63,12 +66,28 @@ const WeatherWrapper: FC = () => {
         return () => subject.unsubscribe()
     }, [])
 
-    const { loading, weather, error } = weatherState
+    useEffect(() => {
+        if (weather.coord) {
+            const { lat, lon } = weather.coord
+            const ENDPOINT = `${FUTURE_WEATHER}lat=${lat}&lon=${lon}`
+            lat && fetch(ENDPOINT)
+                .then(res => res.json())
+                .then(res => console.log(res))
+        }
+    }, [weather])
+
 
     return (
         <>
             <Browser cityName={cityName} error={error} loading={loading} handleInputChange={handleInput} />
-            {Object.entries(weather).length > 0 && <Scores weather={weather}/>}
+            <div className="weather-choice">
+                <ul>
+                    <li onClick={() => setWeatherType('now')}>Now</li>
+                    <li onClick={() => setWeatherType('hourly')}>Hourly</li>
+                    <li onClick={() => setWeatherType('weekly')}>Weekly</li>
+                </ul>
+            </div>
+            {Object.entries(weather).length > 0 && <Scores weather={weather} weatherType={weatherType} />}
         </>
     );
 }

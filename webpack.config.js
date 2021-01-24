@@ -58,7 +58,7 @@ module.exports = () => {
                 template: 'src/index.html'
             }),
             new webpack.HotModuleReplacementPlugin(),
-            new webpack.EnvironmentPlugin(['API_KEY']),
+            new webpack.EnvironmentPlugin(['FUTURE_WEATHER', 'WEATHER_NOW']),
             new ErrorOverlayPlugin()
         ],
         devServer: {
