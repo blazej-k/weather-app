@@ -1,9 +1,9 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react'
+import React, { ChangeEvent, FC, useEffect, useMemo, useState } from 'react'
 import * as env from 'process'
 import Browser from './search/Browser'
 import { Subject } from 'rxjs'
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import Scores from './search/Scores';
+import Scores from './scores/Scores';
 
 const subject = new Subject<string>();
 const subscription = subject.pipe(
@@ -72,22 +72,26 @@ const WeatherWrapper: FC = () => {
             const ENDPOINT = `${FUTURE_WEATHER}lat=${lat}&lon=${lon}`
             lat && fetch(ENDPOINT)
                 .then(res => res.json())
-                .then(res => console.log(res))
+                .then(res => setWeatherState({...weatherState, weather: res}))
         }
     }, [weather])
+
+    // const ScoresCompoennt = useMemo(() => <Scores weather={weather} weatherType={weatherType} name={cityName}/>, [weather, weatherType])
 
 
     return (
         <>
+            {Object.entries(weather).length > 0 && <>
+                <div className="weather-choice">
+                    <ul>
+                        <li onClick={() => setWeatherType('now')}>Now</li>
+                        <li onClick={() => setWeatherType('hourly')}>Hourly</li>
+                        <li onClick={() => setWeatherType('weekly')}>Weekly</li>
+                    </ul>
+                </div>
+                <Scores weather={weather} weatherType={weatherType}/>
+            </>}
             <Browser cityName={cityName} error={error} loading={loading} handleInputChange={handleInput} />
-            <div className="weather-choice">
-                <ul>
-                    <li onClick={() => setWeatherType('now')}>Now</li>
-                    <li onClick={() => setWeatherType('hourly')}>Hourly</li>
-                    <li onClick={() => setWeatherType('weekly')}>Weekly</li>
-                </ul>
-            </div>
-            {Object.entries(weather).length > 0 && <Scores weather={weather} weatherType={weatherType} />}
         </>
     );
 }

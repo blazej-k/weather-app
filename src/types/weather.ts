@@ -56,6 +56,6 @@ type SnowOrRain = {
 type WeatherState = {
   loading: boolean,
   error: boolean,
-  weather: WeatherObj
+  weather: any | WeatherObj
 }
 
