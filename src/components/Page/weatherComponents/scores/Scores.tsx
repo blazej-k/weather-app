@@ -1,30 +1,30 @@
-import React, { FC, useState } from 'react'
-import { WiCelsius } from "weather-icons-react";
+import React, { FC, useEffect, useState } from 'react'
 import Hourly from './Hourly';
 import Now from './Now';
 import Weekly from './Weekly';
 
 interface ScoresProps {
-    weather: WeatherObj,
+    weather: WeatherObj | OneCallWeatherObj,
     weatherType: string,
-    // name: string
 }
 
 const Scores: FC<ScoresProps> = ({ weather, weatherType }) => {
 
-    const { name } = weather
+    const { name } = weather as WeatherObj
     const [cityName, setCityName] = useState('')
 
-    if((cityName !== undefined) && (cityName.length === 0)){
-        setCityName(name)
-    }
+    useEffect(() => {
+        if((cityName !== undefined) && (cityName.length === 0)){
+            setCityName(name)
+        }
+    }, [name])
 
     return (
         <>
             <h1>{cityName}</h1>
-            {(weatherType === 'now' || weatherType === '') && <Now weather={weather}/>}
-            {weatherType === 'hourly' && <Hourly weather={weather}/>}
-            {weatherType === 'weekly' && <Weekly weather={weather}/>}
+            {(weatherType === 'now' || weatherType === '') && <Now weather={'current' in weather && weather.current}/>}
+            {weatherType === 'hourly' && <Hourly weather={'hourly' in weather && weather.hourly}/>}
+            {weatherType === 'weekly' && <Weekly weather={'daily' in weather && weather.daily}/>}
         </>
     );
 }

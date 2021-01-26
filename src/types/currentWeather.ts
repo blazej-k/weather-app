@@ -3,7 +3,7 @@ type WeatherObj = {
     lon: number,
     lat: number
   },
-  weather: weather[],
+  weather: Weather[],
   base: string,
   main: {
     temp: number,
@@ -41,7 +41,7 @@ type WeatherObj = {
   cod: number
 }
 
-type weather = {
+type Weather = {
   id: number,
   main: string,
   description: string,
@@ -56,6 +56,6 @@ type SnowOrRain = {
 type WeatherState = {
   loading: boolean,
   error: boolean,
-  weather: any | WeatherObj
+  weather: WeatherObj | OneCallWeatherObj
 }
 

@@ -15,7 +15,7 @@ const subscription = subject.pipe(
 const initState: WeatherState = {
     loading: false,
     error: false,
-    weather: {} as WeatherObj
+    weather: {} as WeatherObj | OneCallWeatherObj
 }
 
 const WeatherWrapper: FC = () => {
@@ -67,12 +67,14 @@ const WeatherWrapper: FC = () => {
     }, [])
 
     useEffect(() => {
-        if (weather.coord) {
+        if ('coord' in weather) {
             const { lat, lon } = weather.coord
             const ENDPOINT = `${FUTURE_WEATHER}lat=${lat}&lon=${lon}`
             lat && fetch(ENDPOINT)
                 .then(res => res.json())
-                .then(res => setWeatherState({...weatherState, weather: res}))
+                .then((res: OneCallWeatherObj) => {
+                    setWeatherState({...weatherState, weather: res})
+                })
         }
     }, [weather])
 
