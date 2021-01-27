@@ -22,9 +22,9 @@ const Scores: FC<ScoresProps> = ({ weather, weatherType }) => {
     return (
         <>
             <h1>{cityName}</h1>
-            {(weatherType === 'now' || weatherType === '') && <Now weather={'current' in weather && weather.current}/>}
-            {weatherType === 'hourly' && <Hourly weather={'hourly' in weather && weather.hourly}/>}
-            {weatherType === 'weekly' && <Weekly weather={'daily' in weather && weather.daily}/>}
+            {(weatherType === 'now' || weatherType === '') && 'current' in weather && <Now weather={weather.current}/>}
+            {weatherType === 'hourly' && 'hourly' in weather && <Hourly weather={weather.hourly}/>}
+            {weatherType === 'weekly' && 'daily' in weather && <Weekly weather={weather.daily}/>}
         </>
     );
 }
