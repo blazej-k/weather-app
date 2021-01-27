@@ -12,17 +12,10 @@ type Current = {
     visibility: number,
     wind_speed: number,
     wind_deg: number,
-    weather: [
-        {
-            id: number,
-            main: string
-            description: string
-            icon: string
-        }
-    ]
+    weather: Weather[]
 }
 
-type Daily = {
+interface Daily{
     dt: number
     sunrise: number,
     sunset: number,
@@ -45,14 +38,7 @@ type Daily = {
     dew_point: number,
     wind_speed: number,
     wind_deg: number,
-    weather: [
-        {
-            id: number,
-            main: string,
-            description: string,
-            icon: string
-        }
-    ],
+    weather: Weather[]
     clouds: number,
     pop: number,
     uvi: number
@@ -70,13 +56,6 @@ type Hourly = {
     visibility: number,
     wind_speed: number,
     wind_deg: number,
-    weather: [
-        {
-            id: number,
-            main: string,
-            description: string,
-            icon: string
-        }
-    ],
+    weather: Weather[]
     pop: number
 }

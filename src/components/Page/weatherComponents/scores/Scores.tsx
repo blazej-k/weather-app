@@ -14,7 +14,7 @@ const Scores: FC<ScoresProps> = ({ weather, weatherType }) => {
     const [cityName, setCityName] = useState('')
 
     useEffect(() => {
-        if((cityName !== undefined) && (cityName.length === 0)){
+        if((cityName?.length === 0)){ 
             setCityName(name)
         }
     }, [name])
