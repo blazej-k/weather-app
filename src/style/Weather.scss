@@ -1,22 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Raleway:wght@100;200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Raleway:wght@100;200&display=swap");
 
 .content {
     margin: 40px;
-    h1{
+    h1 {
         width: 100%;
         margin: auto;
         text-align: center;
         font-size: 300%;
-    } 
-    .Browser{
-        &-wrapper{
+    }
+    .Browser {
+        &-wrapper {
             text-align: center;
             width: 100%;
             margin: 20px auto;
         }
-        &-search{
+        &-search {
             font-size: 150%;
-            input{
+            input {
                 width: 20%;
                 outline: none;
                 background: none;
@@ -26,7 +26,7 @@
                 border-bottom: 0.5px solid white;
             }
         }
-        &-error{
+        &-error {
             margin-top: 20px;
         }
     }
@@ -43,19 +43,58 @@
                     margin: auto 30px;
                     font-size: 200%;
                     cursor: pointer;
-                    transition-duration: .3s;
-                    &:hover{
+                    transition-duration: 0.3s;
+                    &:hover {
                         color: rgb(10, 10, 179);
                     }
                 }
             }
         }
-        .Weather-scores {
-            border: 0.5px solid white;
-            border-radius: 10px;
-            padding: 10px;
-            li{
-                font-family: 'Noto Sans KR', sans-serif;
+        .Weather {
+            &-scores {
+                border: 0.5px solid white;
+                border-radius: 10px;
+                padding: 20px;
+                font-family: "Noto Sans KR", sans-serif;
+            }
+            &-now {
+                .main {
+                    text-align: center;
+                    padding-bottom: 20px;
+                    margin-bottom: 20px;
+                    border-bottom: 0.5px solid white;
+                    > h1 > svg{
+                        position: relative;
+                        top: 6px;
+                    }
+                    .info-feels-temp{
+                        font-size: 150%;
+                        margin-top: 15px;
+                        > svg{
+                            position: relative;
+                            top: 3px;
+                        }
+                    }
+                }
+                .rest-info {
+                    font-size: 155%;
+                    display: flex;
+                    flex-wrap: wrap;
+                    .info-container {
+                        width: 33.3%;
+                        text-align: center;
+                        span {
+                            display: block;
+                            margin: 15px auto;
+                        }
+                        &:first-child{
+                            text-align: left;
+                        }
+                        &:last-child{
+                            text-align: right;
+                        }
+                    }
+                }
             }
         }
     }
