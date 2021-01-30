@@ -9,14 +9,15 @@ interface BrowserProps {
 
 const Browser: FC<BrowserProps> = ({ cityName, handleInputChange, error, loading }) => {
     return (
-        <div className="browser-wrapper">
-            <div className="browser-search">
+        <div className="Browser-wrapper">
+            <div className="Browser-search">
+                <span>City: </span>
                 <input value={cityName} onChange={handleInputChange} />
             </div>
-            <div className="browser-error">
+            <div className="Browser-error">
                 {error && <b>Wrong name of city({cityName})</b>}
             </div>
-            <div className="browser-loading">
+            <div className="Browser-loading">
                 {loading && 'Loading...'}
             </div>
         </div>

@@ -7,10 +7,10 @@ interface NowProps {
 const Now: FC<NowProps> = ({ weather }) => {
 
     return (
-        <>
-            <h1>Now: {weather.temp}</h1>
+        <div className='Weather-now' data-aos="fade-up" data-aos-once={true}>
+            <h1>{weather.temp}</h1>
             <img style={{ width: '3%' }} src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt="icon" />
-        </>
+        </div>
     );
 }
 

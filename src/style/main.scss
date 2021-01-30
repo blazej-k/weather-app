@@ -1,5 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+
 $primary-color: red;
 
 img{
     width: 10%;
+}
+
+body{
+    color: wheat;
+    font-family: 'Raleway', sans-serif;
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(43,51,224,1) 0%, rgba(38,104,211,1) 30%, rgba(11,126,157,1) 68%);
 }

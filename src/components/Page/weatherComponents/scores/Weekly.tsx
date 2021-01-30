@@ -1,13 +1,13 @@
 import React, { FC } from 'react'
 
-interface WeeklyProps {
+interface DailyProps {
     weather: Daily[],
 }
 
-const Weekly: FC<WeeklyProps> = ({ weather }) => {
+const Daily: FC<DailyProps> = ({ weather }) => {
 
     return (
-        <>
+        <div className='Weather-daily' data-aos="fade-up" data-aos-once={true}>
             <h1>Next days:</h1>
             <ul>
                 {weather.map((day: any) => (
@@ -17,8 +17,8 @@ const Weekly: FC<WeeklyProps> = ({ weather }) => {
                     </li>
                 ))}
             </ul>
-        </>
+        </div>
     );
 }
 
-export default Weekly;
+export default Daily;

@@ -1,10 +1,17 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Page from './components/Page'
 import ErrorComponent from './components/ErrorComponent'
+import Aos from 'aos'
+import 'aos/dist/aos.css';
 
 const App: FC = () => {
+
+    useEffect(() => {
+        Aos.init() 
+    }, [])
+
     return (
         <Router>
             <Switch>

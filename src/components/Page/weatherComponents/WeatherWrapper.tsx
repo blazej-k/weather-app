@@ -4,6 +4,7 @@ import Browser from './search/Browser'
 import { Subject } from 'rxjs'
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import Scores from './scores/Scores';
+import '../../../style/Weather.scss'
 
 const subject = new Subject<string>();
 const subscription = subject.pipe(
@@ -73,28 +74,27 @@ const WeatherWrapper: FC = () => {
             lat && fetch(ENDPOINT)
                 .then(res => res.json())
                 .then((res: OneCallWeatherObj) => {
-                    setWeatherState({...weatherState, weather: res})
+                    setWeatherState({ ...weatherState, weather: res })
                 })
         }
     }, [weather])
 
-    // const ScoresCompoennt = useMemo(() => <Scores weather={weather} weatherType={weatherType} name={cityName}/>, [weather, weatherType])
-
-
     return (
-        <>
-            {Object.entries(weather).length > 0 && <>
-                <div className="weather-choice">
+        <div className="content">
+            <Browser cityName={cityName} error={error} loading={loading} handleInputChange={handleInput} />
+            {Object.entries(weather).length > 0 && <div className='Weather'>
+                <div className="Weather-nav">
                     <ul>
                         <li onClick={() => setWeatherType('now')}>Now</li>
                         <li onClick={() => setWeatherType('hourly')}>Hourly</li>
                         <li onClick={() => setWeatherType('weekly')}>Weekly</li>
                     </ul>
                 </div>
-                <Scores weather={weather} weatherType={weatherType}/>
-            </>}
-            <Browser cityName={cityName} error={error} loading={loading} handleInputChange={handleInput} />
-        </>
+                <div className="Weather-scores">
+                    <Scores weather={weather} weatherType={weatherType} />
+                </div>
+            </div>}
+        </div>
     );
 }
 

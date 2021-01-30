@@ -1,0 +1,44 @@
+.content {
+    margin: 40px; 
+    .Browser{
+        &-wrapper{
+            text-align: center;
+            width: 100%;
+            margin: auto;
+        }
+        &-search{
+            font-size: 150%;
+            input{
+                width: 20%;
+                outline: none;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 120%;
+                border-bottom: 0.5px solid white;
+            }
+        }
+    }
+    .Weather {
+        width: 80%;
+        margin: auto;
+        .Weather-nav {
+            width: 100%;
+            margin: auto;
+            text-align: center;
+            ul {
+                li {
+                    display: inline-block;
+                    margin: auto 30px;
+                    font-size: 200%;
+                    cursor: pointer;
+                }
+            }
+        }
+        .Weather-scores {
+            border: 0.5px solid white;
+            border-radius: 10px;
+            padding: 10px;
+        }
+    }
+}
