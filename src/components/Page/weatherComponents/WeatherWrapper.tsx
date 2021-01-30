@@ -76,7 +76,7 @@ const WeatherWrapper: FC = () => {
                 .then((res: OneCallWeatherObj) => {
                     setWeatherState({ ...weatherState, weather: res })
                 })
-        }
+        } 
     }, [weather])
 
     return (

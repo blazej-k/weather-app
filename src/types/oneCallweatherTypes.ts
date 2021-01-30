@@ -13,10 +13,12 @@ type Current = {
     wind_speed: number,
     wind_deg: number,
     weather: Weather[]
+    rain: any,
+    snow: any
 }
 
 interface Daily{
-    dt: number
+    dt: number 
     sunrise: number,
     sunset: number,
     temp: {
