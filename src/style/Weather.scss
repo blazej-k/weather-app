@@ -1,10 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Raleway:wght@100;200&display=swap');
+
 .content {
-    margin: 40px; 
+    margin: 40px;
+    h1{
+        width: 100%;
+        margin: auto;
+        text-align: center;
+        font-size: 300%;
+    } 
     .Browser{
         &-wrapper{
             text-align: center;
             width: 100%;
-            margin: auto;
+            margin: 20px auto;
         }
         &-search{
             font-size: 150%;
@@ -18,10 +26,13 @@
                 border-bottom: 0.5px solid white;
             }
         }
+        &-error{
+            margin-top: 20px;
+        }
     }
     .Weather {
         width: 80%;
-        margin: auto;
+        margin: 50px auto;
         .Weather-nav {
             width: 100%;
             margin: auto;
@@ -32,6 +43,10 @@
                     margin: auto 30px;
                     font-size: 200%;
                     cursor: pointer;
+                    transition-duration: .3s;
+                    &:hover{
+                        color: rgb(10, 10, 179);
+                    }
                 }
             }
         }
@@ -39,6 +54,9 @@
             border: 0.5px solid white;
             border-radius: 10px;
             padding: 10px;
+            li{
+                font-family: 'Noto Sans KR', sans-serif;
+            }
         }
     }
 }
