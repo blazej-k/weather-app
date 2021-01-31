@@ -65,13 +65,13 @@
                     *{
                         font-family: "Noto Sans KR", sans-serif;
                     }
+
                     > h1 > svg{
                         position: relative;
                         top: 6px;
                     }
                     .info-feels-temp{
                         font-size: 150%;
-                        margin-top: 15px;
                         > svg{
                             position: relative;
                             top: 3px;
@@ -85,12 +85,22 @@
                     text-align: center;
                     margin-bottom: 30px;
                     font-size: 230%;
+                    margin-bottom: 10px;
+                }
+                .icon{
+                    width: 100%;
+                    margin: auto;
+                    text-align: center;
+                    img{
+                        width: 7%;
+                    }
                 }
                 .rest-info {
                     font-family: "Noto Sans KR", sans-serif;
                     font-size: 155%;
                     display: flex;
                     flex-wrap: wrap;
+
                     .info-container {
                         width: 33.3%;
                         text-align: center;

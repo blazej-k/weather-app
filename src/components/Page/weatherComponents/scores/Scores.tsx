@@ -1,4 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
+import { IoIosPartlySunny } from 'react-icons/io';
 import Hourly from './Hourly';
 import Now from './Now';
 import Weekly from './Weekly';
