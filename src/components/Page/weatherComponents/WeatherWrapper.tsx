@@ -27,6 +27,7 @@ const WeatherWrapper: FC = () => {
     const WEATHER_NOW = process.env.WEATHER_NOW
     const FUTURE_WEATHER = process.env.FUTURE_WEATHER
     const { loading, weather, error } = weatherState
+    const { language } = window.navigator
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
         weatherState.error && setWeatherState({ ...weatherState, error: true })
@@ -37,7 +38,7 @@ const WeatherWrapper: FC = () => {
 
     const getWeather = async (name: string) => {
         const ENDPOINT = `${WEATHER_NOW}${name.length > 1 ? name[0].toUpperCase() + name.slice(1, name.length) :
-            name[0].toUpperCase()}`
+            name[0].toUpperCase()}&lang=${language.slice(0, 2)}`
         await fetch(ENDPOINT)
             .then(res => {
                 setWeatherState({ ...weatherState, loading: false })
@@ -70,13 +71,13 @@ const WeatherWrapper: FC = () => {
     useEffect(() => {
         if ('coord' in weather) {
             const { lat, lon } = weather.coord
-            const ENDPOINT = `${FUTURE_WEATHER}lat=${lat}&lon=${lon}`
+            const ENDPOINT = `${FUTURE_WEATHER}lat=${lat}&lon=${lon}&lang=${language.slice(0, 2)}`
             lat && fetch(ENDPOINT)
                 .then(res => res.json())
                 .then((res: OneCallWeatherObj) => {
                     setWeatherState({ ...weatherState, weather: res })
                 })
-        } 
+        }
     }, [weather])
 
     return (

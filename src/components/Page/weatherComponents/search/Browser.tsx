@@ -12,7 +12,7 @@ const Browser: FC<BrowserProps> = ({ cityName, handleInputChange, error, loading
         <div className="Browser-wrapper">
             <div className="Browser-search">
                 <span>City: </span>
-                <input value={cityName} onChange={handleInputChange} autoComplete='false' autoCorrect='false' autoCapitalize='false'/>
+                <input value={cityName} onChange={handleInputChange} autoComplete='off' autoCorrect='off' autoCapitalize='off'/>
             </div>
             <div className="Browser-error">
                 {error && <b>Wrong name of city({cityName})</b>}

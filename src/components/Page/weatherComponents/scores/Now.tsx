@@ -8,7 +8,6 @@ interface NowProps {
 
 const Now: FC<NowProps> = ({ weather }) => {
 
-    console.log(weather)
     const [iconName, setIconName] = useState('')
 
     const { temp, sunset, sunrise, wind_speed, pressure, clouds, visibility, uvi, humidity, } = weather
@@ -61,7 +60,7 @@ const Now: FC<NowProps> = ({ weather }) => {
         }
     }, [icon])
 
-    const validateDate = (dateToFormat: Date, unit: string) => date.format(dateToFormat, unit)
+    const validateDate = (dateToFormat: Date, format: string) => date.format(dateToFormat, format)
 
     return (
         <div className='Weather-now' data-aos="fade-up" data-aos-once={true}>
@@ -98,7 +97,6 @@ const Now: FC<NowProps> = ({ weather }) => {
                     <span>Humidity: {humidity} %</span>
                 </div>
             </div>
-            {/* <img style={{ width: '3%' }} src={`http://openweathermap.org/img/wn/${weather.weather[0].icon}.png`} alt="icon" /> */}
         </div>
     );
 }
