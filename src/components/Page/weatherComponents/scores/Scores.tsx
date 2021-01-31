@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import Hourly from './Hourly';
 import Now from './Now';
-import Weekly from './Weekly';
+import Daily from './Daily';
 
 interface ScoresProps {
     weather: WeatherObj | OneCallWeatherObj,
@@ -25,7 +25,7 @@ const Scores: FC<ScoresProps> = ({ weather, weatherType }) => {
             {'id' in weather && 'Loading...'}
             {(weatherType === 'now' || weatherType === '') && 'current' in weather && <Now weather={weather.current} />}
             {weatherType === 'hourly' && 'hourly' in weather && <Hourly weather={weather.hourly} />}
-            {weatherType === 'weekly' && 'daily' in weather && <Weekly weather={weather.daily} />}
+            {weatherType === 'weekly' && 'daily' in weather && <Daily weather={weather.daily} />}
         </>
     );
 }

@@ -1,6 +1,7 @@
 import React, { FC, useEffect, useState } from 'react'
 import { RiCelsiusLine } from 'react-icons/ri'
-import date from 'date-and-time';
+import validateDate from './helpers/validateDate'
+import getIconName from './helpers/getIconName'
 
 interface NowProps {
     weather: Current
@@ -15,52 +16,8 @@ const Now: FC<NowProps> = ({ weather }) => {
 
 
     useEffect(() => {
-        switch(icon){
-            case '01d': 
-                setIconName('sun')
-                break;
-            case '01n':
-                setIconName('moon')
-                break;
-            case '02d': 
-                setIconName('cloudy_d')
-                break;
-            case '02n': 
-                setIconName('cloudy_n')
-                break;
-            case '03d':
-            case '03n':  
-                setIconName('cloud')
-                break;
-            case '04d':
-            case '04n': 
-                setIconName('broken_clouds')
-                break;
-            case '09d':
-            case '09n':
-            case '10d':
-            case '10n': 
-                setIconName('rain')
-                break;
-            case '11d':
-            case '11n': 
-                setIconName('storm')
-                break;
-            case '13d':
-            case '13n': 
-                setIconName('snow')
-                break;
-            case '50d':
-            case '50n': 
-                setIconName('mist')
-                break;
-            default:    
-                setIconName('')
-                break;
-        }
+        setIconName(getIconName(icon))
     }, [icon])
-
-    const validateDate = (dateToFormat: Date, format: string) => date.format(dateToFormat, format)
 
     return (
         <div className='Weather-now' data-aos="fade-up" data-aos-once={true}>
@@ -79,10 +36,10 @@ const Now: FC<NowProps> = ({ weather }) => {
             <div className='rest-info'>
                 <div className='info-container'>
                     <span>Sunrise:&nbsp; 
-                        {validateDate(new Date(sunrise * 1000), 'HH')}:{validateDate(new Date(sunrise * 1000), 'mm')}
+                        {validateDate(new Date(sunrise * 1000), 'HH:mm')}
                     </span>
                     <span>Sunset:&nbsp;
-                        {validateDate(new Date(sunset * 1000), 'HH')}:{validateDate(new Date(sunset * 1000), 'mm')}
+                        {validateDate(new Date(sunset * 1000), 'HH:mm')}
                     </span>
                     <span>Pressure: {pressure} hPa</span>
                 </div>
