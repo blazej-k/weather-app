@@ -1,5 +1,6 @@
 import React, { FC, useEffect, useState } from 'react'
 import { RiCelsiusLine } from 'react-icons/ri'
+import date from 'date-and-time';
 
 interface NowProps {
     weather: Current
@@ -60,6 +61,8 @@ const Now: FC<NowProps> = ({ weather }) => {
         }
     }, [icon])
 
+    const validateDate = (dateToFormat: Date, unit: string) => date.format(dateToFormat, unit)
+
     return (
         <div className='Weather-now' data-aos="fade-up" data-aos-once={true}>
             <div className="main">
@@ -76,8 +79,12 @@ const Now: FC<NowProps> = ({ weather }) => {
             </div>
             <div className='rest-info'>
                 <div className='info-container'>
-                    <span>Sunrise: {new Date(sunrise * 1000).getHours()}:{new Date(sunrise * 1000).getMinutes()}</span>
-                    <span>Sunset: {new Date(sunset * 1000).getHours()}:{new Date(sunset * 1000).getMinutes()}</span>
+                    <span>Sunrise:&nbsp; 
+                        {validateDate(new Date(sunrise * 1000), 'HH')}:{validateDate(new Date(sunrise * 1000), 'mm')}
+                    </span>
+                    <span>Sunset:&nbsp;
+                        {validateDate(new Date(sunset * 1000), 'HH')}:{validateDate(new Date(sunset * 1000), 'mm')}
+                    </span>
                     <span>Pressure: {pressure} hPa</span>
                 </div>
                 <div className="info-container">
