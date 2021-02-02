@@ -1,5 +1,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Raleway:wght@100;200&display=swap");
 
+@mixin weatherIcons {
+    ul {
+        list-style-type: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        li {
+            text-align: center;
+            width: 12.5%;
+            margin: auto;
+            font-family: "Noto Sans KR", sans-serif;
+            font-size: 150%;
+            > svg {
+                position: relative;
+                top: 2.5px;
+            }
+            > img {
+                width: 30%;
+                margin-top: 10px;
+            }
+        }
+    }
+}
+
+@mixin h2 {
+    h2{
+        text-align: center;
+        width: 100%;
+        margin: 20px auto;
+    }
+}
+
 .content {
     margin: 40px;
     h1 {
@@ -119,44 +151,28 @@
                 }
             }
             &-daily {
-                h2 {
-                    text-align: center;
-                    width: 100%;
-                    margin: 20px auto;
-                }
-                .info > ul {
-                    list-style-type: none;
-                    display: flex;
-                    flex-wrap: wrap;
-                    padding: 0;
-                    li {
-                        text-align: center;
-                        width: 12.5%;
-                        margin: auto;
-                        font-family: "Noto Sans KR", sans-serif;
-                        font-size: 150%;
-                        > svg {
-                            position: relative;
-                            top: 2.5px;
-                        }
-                        > img {
-                            width: 30%;
-                            margin-top: 10px;
-                        }
-                    }
+                @include h2();
+                .info {
+                    @include weatherIcons();
                 }
             }
-            &-hourly{
-                ul{
-                    list-style-type: none;
-                    padding: 0;
-                    width: 100%;
-                    margin: auto;
-                    text-align: center;
-                    li{
-                        display: inline-block;
+            &-hourly {
+                .navigation-wrapper {
+                    display: flex;
+                    @include h2();
+                    button {
+                        background: none;
+                        border: none;
+                        color: white;
+                        font-size: 200%;
+                        cursor: pointer;
+                        transition-duration: .3s;
+                        &:hover{
+                            color: gray
+                        }
                     }
                 }
+                @include weatherIcons();
             }
         }
     }
