@@ -38,6 +38,7 @@
             margin: auto;
             text-align: center;
             ul {
+                padding: 0;
                 li {
                     display: inline-block;
                     margin: auto 30px;
@@ -142,6 +143,18 @@
                             width: 30%;
                             margin-top: 10px;
                         }
+                    }
+                }
+            }
+            &-hourly{
+                ul{
+                    list-style-type: none;
+                    padding: 0;
+                    width: 100%;
+                    margin: auto;
+                    text-align: center;
+                    li{
+                        display: inline-block;
                     }
                 }
             }

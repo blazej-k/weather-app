@@ -89,7 +89,7 @@ const WeatherWrapper: FC = () => {
                     <ul>
                         <li onClick={() => setWeatherType('now')}>Now</li>
                         <li onClick={() => setWeatherType('hourly')}>Hourly</li>
-                        <li onClick={() => setWeatherType('weekly')}>Weekly</li>
+                        <li onClick={() => setWeatherType('daily')}>Daily</li>
                     </ul>
                 </div>
                 <div className="Weather-scores">
