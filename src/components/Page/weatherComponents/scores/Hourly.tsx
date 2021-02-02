@@ -1,8 +1,6 @@
 import React, { CSSProperties, FC, useEffect, useState } from 'react'
-import { RiCelsiusLine } from 'react-icons/ri'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
-import getIconName from './helpers/getIconName'
-import validateDate from './helpers/validateDate'
+import IconsComponent from './helpers/IconsComponent'
 
 
 interface HourlyProps {
@@ -23,7 +21,7 @@ const Hourly: FC<HourlyProps> = ({ weather }) => {
     
     useEffect(() => {
         if(style.opacity === 0){
-            setStyle({opacity: 1, transitionDuration: '.4s'})
+            setStyle({opacity: 1, transitionDuration: '.8s'})
         }
     }, [style])
 
@@ -35,13 +33,7 @@ const Hourly: FC<HourlyProps> = ({ weather }) => {
                 <button onClick={() => handleButton('next')}><IoIosArrowForward/></button>
             </div>
             <ul style={style}>
-                {weather.slice(index - 8, index).map(hour => (
-                    <li key={hour.dt}>
-                        <b>{validateDate(new Date(hour.dt * 1000), 'HH:mm')}</b><br/>
-                        {Math.round(hour.temp)} <RiCelsiusLine /><br/>
-                        <img src={`../../../assets/icons/${getIconName(hour.weather[0].icon)}.png`} alt="" />
-                    </li>
-                ))}
+                {weather.slice(index - 8, index).map(hour => <IconsComponent key={hour.dt} element={hour}/>)}
             </ul>
         </div>
     );

@@ -44,7 +44,7 @@ interface Daily{
     uvi: number
 }
 
-type Hourly = {
+interface Hourly {
     dt: number,
     temp: number,
     feels_like: number,

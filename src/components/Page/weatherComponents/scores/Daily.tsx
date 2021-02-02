@@ -1,7 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import { RiCelsiusLine } from 'react-icons/ri';
-import getIconName from './helpers/getIconName';
-import validateDate from './helpers/validateDate';
+import IconsComponent from './helpers/IconsComponent';
 
 interface DailyProps {
     weather: Daily[],
@@ -14,13 +12,7 @@ const Daily: FC<DailyProps> = ({ weather }) => {
             <h2>Next days:</h2>
             <div className="info">
                 <ul>
-                    {weather.map((day: Daily) => (
-                        <li key={day.dt}>
-                            <b>{validateDate(new Date(day.dt * 1000), 'MM.DD')}</b><br/>
-                            {Math.round(day.temp.day)} <RiCelsiusLine /><br/>
-                            <img src={`../../../assets/icons/${getIconName(day.weather[0].icon)}.png`} alt="" />
-                        </li>
-                    ))}
+                    {weather.map((day: Daily) => <IconsComponent key={day.dt} element={day}/>)}
                 </ul>
             </div>
         </div>
