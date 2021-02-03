@@ -10,9 +10,15 @@ interface IconWrapperProps {
 const IconWrapper: FC<IconWrapperProps> = ({ element }) => {
 
     const { temp } = element
+    const now = new Date().getHours()
+    const hourFromElement = new Date(element.dt * 1000).getHours()
+
+    //when temp is number it's hourly, if not - daily
 
     return (
-        <li>
+        <li>    
+            {typeof temp === 'number' && hourFromElement === now && <b className='now'>Now</b>}
+            <br/>
             <b>{validateDate(new Date(element.dt * 1000), typeof temp === 'number' ? 'HH:mm' : 'DD/MM')}</b><br />
             {Math.round(typeof temp === 'number' ? temp : temp.day)} <RiCelsiusLine /><br />
             <img src={`../../../assets/icons/${getIconName(element.weather[0].icon)}.png`} alt="" />

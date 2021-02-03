@@ -12,6 +12,13 @@
             margin: auto;
             font-family: "Noto Sans KR", sans-serif;
             font-size: 150%;
+            b.now{
+                display: block;
+                position: absolute;
+                // left: 0;
+                width: 12%;
+                text-align: center;
+            }
             > svg {
                 position: relative;
                 top: 2.5px;
@@ -171,6 +178,9 @@
                             color: gray
                         }
                     }
+                }
+                ul{
+                    margin: 0
                 }
                 @include weatherIcons();
             }
