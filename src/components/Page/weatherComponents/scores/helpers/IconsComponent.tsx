@@ -4,24 +4,25 @@ import getIconName from './getIconName';
 import validateDate from './validateDate';
 
 interface IconWrapperProps {
-    element: Daily | Hourly
+    element: Daily | Hourly,
 }
 
 const IconWrapper: FC<IconWrapperProps> = ({ element }) => {
 
     const { temp } = element
     const now = new Date().getHours()
-    const hourFromElement = new Date(element.dt * 1000).getHours()
+    const apiTime = new Date(element.dt * 1000)
+    const iconName = getIconName(element.weather[0].icon)
 
     //when temp is number it's hourly, if not - daily
 
     return (
         <li>    
-            {typeof temp === 'number' && hourFromElement === now && <b className='now'>Now</b>}
+            {typeof temp === 'number' && apiTime.getHours() === now && <b className='now'>Now</b>}
             <br/>
-            <b>{validateDate(new Date(element.dt * 1000), typeof temp === 'number' ? 'HH:mm' : 'DD/MM')}</b><br />
+            <b>{validateDate(apiTime, typeof temp === 'number' ? 'HH:mm' : 'DD/MM')}</b><br />
             {Math.round(typeof temp === 'number' ? temp : temp.day)} <RiCelsiusLine /><br />
-            <img src={`../../../assets/icons/${getIconName(element.weather[0].icon)}.png`} alt="" />
+            <img src={`../../../../../assets/icons/${iconName}.png`} alt="" />
         </li>
     );
 }

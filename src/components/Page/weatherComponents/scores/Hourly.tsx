@@ -12,11 +12,11 @@ const Hourly: FC<HourlyProps> = ({ weather }) => {
     const [index, setIndex] = useState(8) //this is the last index of showing array
     const [style, setStyle] = useState<CSSProperties>({transform: 'translateX(0px)'})
 
-    const handleButton = (type: string) => {
-        setStyle({transform: `translateX(${type === 'next' ? '60px' : '-60px'})`, opacity: 0, transition: '0s'})
-        if((type === 'next') && (index + 8 > weather.length)) setIndex(8)
-        else if((type === 'prev') && (index - 8 <= 0)) setIndex(24)
-        else setIndex(prev => type === 'next' ? prev + 8 : prev - 8)
+    const handleButton = (buttonType: string) => {
+        setStyle({transform: `translateX(${buttonType === 'next' ? '60px' : '-60px'})`, opacity: 0, transition: '0s'})
+        if((buttonType === 'next') && (index + 8 > weather.length)) setIndex(8)
+        else if((buttonType === 'prev') && (index - 8 <= 0)) setIndex(24)
+        else setIndex(prev => buttonType === 'next' ? prev + 8 : prev - 8)
     }
     
     useEffect(() => {

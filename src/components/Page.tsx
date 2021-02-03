@@ -7,8 +7,8 @@ const Page: FC = () => {
     return (
         <>
             <Header />
-            <Slider />
             <WeatherWrapper/>
+            <Slider />
         </>
     );
 }
