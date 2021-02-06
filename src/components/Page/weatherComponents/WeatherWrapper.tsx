@@ -5,7 +5,7 @@ import { Subject } from 'rxjs'
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import Scores from './scores/Scores';
 import '../../../style/Weather.scss'
-import { useUpdateWeather } from './hooks/weatherHooks';
+import { useWeather } from './hooks/weatherHooks';
 
 const subject = new Subject<string>();
 const subscription = subject.pipe(
@@ -29,7 +29,7 @@ const WeatherWrapper: FC = () => {
     const FUTURE_WEATHER = process.env.FUTURE_WEATHER
     const { loading, weather, error } = weatherState
     const { language } = window.navigator
-    const updateWeather = useUpdateWeather()
+    const updateWeather = useWeather().changeWeather
 
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => {

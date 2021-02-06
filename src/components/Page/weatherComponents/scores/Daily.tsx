@@ -5,7 +5,7 @@ import IconsComponent from './helpers/IconsComponent';
 
 const Daily: FC = () => {
 
-    const weather = useWeather().daily
+    const weather = useWeather().weather.daily
 
     return (
         <div className='Weather-daily' data-aos="fade-up" data-aos-once={true}>

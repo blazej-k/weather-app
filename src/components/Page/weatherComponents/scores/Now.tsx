@@ -11,7 +11,7 @@ import { useWeather } from '../hooks/weatherHooks'
 const Now: FC = () => {
 
     const [iconName, setIconName] = useState('')
-    const weather = useWeather().current
+    const weather = useWeather().weather.current
 
     const { temp, sunset, sunrise, wind_speed, pressure, clouds, visibility, uvi, humidity } = weather
     const { main, description, icon } = weather.weather[0]

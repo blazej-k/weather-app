@@ -1,8 +1,9 @@
 import React, { createContext, FC, useState } from 'react'
 
-
-export const WeatherContext = createContext<Partial<OneCallWeatherObj>>({})
-export const UpdateWeatherContext = createContext((weather: OneCallWeatherObj) => { })
+interface Context {
+    weather: OneCallWeatherObj,
+    changeWeather: (weather: OneCallWeatherObj) => void
+}
 
 const WeatherProvider: FC = ({ children }) => {
 
@@ -13,13 +14,12 @@ const WeatherProvider: FC = ({ children }) => {
     }
 
     return (
-        <WeatherContext.Provider value={weather}>
-            <UpdateWeatherContext.Provider value={changeWeather}>
+        <WeatherContext.Provider value={{weather, changeWeather}}>
                 {children}
-            </UpdateWeatherContext.Provider>
         </WeatherContext.Provider>
 
     );
 }
 
 export default WeatherProvider;
+export const WeatherContext = createContext<Context>({weather: {} as OneCallWeatherObj, changeWeather: () => {}})

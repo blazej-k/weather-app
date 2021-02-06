@@ -8,7 +8,7 @@ const Hourly: FC = () => {
 
     const [index, setIndex] = useState(8) //this is the last index of showing array
     const [style, setStyle] = useState<CSSProperties>({transform: 'translateX(0px)'})
-    const weather = useWeather().hourly.slice(0, 24)
+    const weather = useWeather().weather.hourly.slice(0, 24)
 
     const handleButton = (buttonType: string) => {
         setStyle({transform: `translateX(${buttonType === 'next' ? '60px' : '-60px'})`, opacity: 0, transition: '0s'})

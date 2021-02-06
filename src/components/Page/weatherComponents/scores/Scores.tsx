@@ -12,7 +12,7 @@ interface ScoresProps {
 const Scores: FC<ScoresProps> = ({ weatherType, cityName }) => {
 
     const [name, setName] = useState('')
-    const weather = useWeather()
+    const weather = useWeather().weather
 
     useEffect(() => {
         if (cityName?.length !== 0) {
