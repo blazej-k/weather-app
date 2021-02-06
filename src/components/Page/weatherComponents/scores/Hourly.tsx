@@ -1,16 +1,14 @@
 import React, { CSSProperties, FC, useEffect, useState } from 'react'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import { useWeather } from '../hooks/weatherHooks'
 import IconsComponent from './helpers/IconsComponent'
 
 
-interface HourlyProps {
-    weather: Hourly[],
-}
-
-const Hourly: FC<HourlyProps> = ({ weather }) => {
+const Hourly: FC = () => {
 
     const [index, setIndex] = useState(8) //this is the last index of showing array
     const [style, setStyle] = useState<CSSProperties>({transform: 'translateX(0px)'})
+    const weather = useWeather().hourly.slice(0, 24)
 
     const handleButton = (buttonType: string) => {
         setStyle({transform: `translateX(${buttonType === 'next' ? '60px' : '-60px'})`, opacity: 0, transition: '0s'})

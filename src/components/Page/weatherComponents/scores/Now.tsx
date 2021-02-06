@@ -2,16 +2,18 @@ import React, { FC, useEffect, useState } from 'react'
 import { RiCelsiusLine } from 'react-icons/ri'
 import validateDate from './helpers/validateDate'
 import getIconName from './helpers/getIconName'
+import { useWeather } from '../hooks/weatherHooks'
 
-interface NowProps {
-    weather: Current
-}
+// interface NowProps {
+//     weather: Current
+// }
 
-const Now: FC<NowProps> = ({ weather }) => {
+const Now: FC = () => {
 
     const [iconName, setIconName] = useState('')
+    const weather = useWeather().current
 
-    const { temp, sunset, sunrise, wind_speed, pressure, clouds, visibility, uvi, humidity, } = weather
+    const { temp, sunset, sunrise, wind_speed, pressure, clouds, visibility, uvi, humidity } = weather
     const { main, description, icon } = weather.weather[0]
 
 

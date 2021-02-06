@@ -1,11 +1,11 @@
 import React, { FC, useEffect, useState } from 'react'
+import { useWeather } from '../hooks/weatherHooks';
 import IconsComponent from './helpers/IconsComponent';
 
-interface DailyProps {
-    weather: Daily[],
-}
 
-const Daily: FC<DailyProps> = ({ weather }) => {
+const Daily: FC = () => {
+
+    const weather = useWeather().daily
 
     return (
         <div className='Weather-daily' data-aos="fade-up" data-aos-once={true}>

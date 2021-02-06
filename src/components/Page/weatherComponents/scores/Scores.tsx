@@ -2,30 +2,31 @@ import React, { FC, useEffect, useState } from 'react'
 import Hourly from './Hourly';
 import Now from './Now';
 import Daily from './Daily';
+import { useWeather } from '../hooks/weatherHooks';
 
 interface ScoresProps {
-    weather: WeatherObj | OneCallWeatherObj,
     weatherType: string,
+    cityName: string
 }
 
-const Scores: FC<ScoresProps> = ({ weather, weatherType }) => {
+const Scores: FC<ScoresProps> = ({ weatherType, cityName }) => {
 
-    const { name } = weather as WeatherObj
-    const [cityName, setCityName] = useState('')
+    const [name, setName] = useState('')
+    const weather = useWeather()
 
     useEffect(() => {
-        if ((cityName?.length === 0)) {
-            setCityName(name)
+        if (cityName?.length !== 0) {
+            setName(cityName)
         }
-    }, [name])
+    }, [cityName])
 
     return (
         <>
-            <h1>{cityName}</h1>
+            <h1>{name}</h1>
             {'id' in weather && 'Loading...'}
-            {(weatherType === 'now' || weatherType === '') && 'current' in weather && <Now weather={weather.current} />}
-            {weatherType === 'hourly' && 'hourly' in weather && <Hourly weather={weather.hourly.slice(0, 24)} />}
-            {weatherType === 'daily' && 'daily' in weather && <Daily weather={weather.daily} />}
+            {(weatherType === 'now' || weatherType === '') && 'current' in weather && <Now />}
+            {weatherType === 'hourly' && 'hourly' in weather && <Hourly />}
+            {weatherType === 'daily' && 'daily' in weather && <Daily />}
         </>
     );
 }
