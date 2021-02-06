@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC } from 'react'
 import { useWeather } from '../hooks/weatherHooks';
 import IconsComponent from './helpers/IconsComponent';
 

@@ -4,29 +4,28 @@ import validateDate from './helpers/validateDate'
 import getIconName from './helpers/getIconName'
 import { useWeather } from '../hooks/weatherHooks'
 
-// interface NowProps {
-//     weather: Current
-// }
 
 const Now: FC = () => {
 
     const [iconName, setIconName] = useState('')
-    const weather = useWeather().weather.current
+    const weather = useWeather().weather
 
-    const { temp, sunset, sunrise, wind_speed, pressure, clouds, visibility, uvi, humidity } = weather
-    const { main, description, icon } = weather.weather[0]
+    const { temp, sunset, sunrise, wind_speed, pressure, clouds, visibility, uvi, humidity } = weather.current
+    const { main, description, icon } = weather.current.weather[0]
 
 
     useEffect(() => {
         setIconName(getIconName(icon))
     }, [icon])
 
+    console.log(weather.alerts)
+
     return (
         <div className='Weather-now' data-aos="fade-up" data-aos-once={true}>
             <div className="main">
                 <h1>{Math.round(temp)}<RiCelsiusLine /></h1>
                 <div className='info-feels-temp'>
-                    Feels like {Math.round(weather.feels_like)}<RiCelsiusLine />
+                    Feels like {Math.round(weather.current.feels_like)}<RiCelsiusLine />
                 </div>
             </div>
             <h2 className="description">
@@ -55,6 +54,16 @@ const Now: FC = () => {
                     <span>UVI index: {uvi}</span>
                     <span>Humidity: {humidity} %</span>
                 </div>
+                {'alerts' in weather && 
+                    <div className="info-alerts">
+                        <h2>Alerts</h2>
+                        <ul>
+                        {weather.alerts.map(({description, start}) => (
+                            description.length > 0 && <li key={start}>{description}</li>
+                        ))}
+                        </ul>
+                    </div>
+                }
             </div>
         </div>
     );

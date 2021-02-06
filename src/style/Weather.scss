@@ -12,7 +12,7 @@
             margin: auto;
             font-family: "Noto Sans KR", sans-serif;
             font-size: 150%;
-            b.now{
+            b.now {
                 display: block;
                 position: absolute;
                 // left: 0;
@@ -32,7 +32,7 @@
 }
 
 @mixin h2 {
-    h2{
+    h2 {
         text-align: center;
         width: 100%;
         margin: 20px auto;
@@ -63,7 +63,7 @@
                 color: white;
                 font-size: 120%;
                 border-bottom: 0.5px solid white;
-                &::-webkit-search-cancel-button{
+                &::-webkit-search-cancel-button {
                     cursor: pointer;
                 }
             }
@@ -143,19 +143,34 @@
                     font-size: 155%;
                     display: flex;
                     flex-wrap: wrap;
-
-                    .info-container {
-                        width: 33.3%;
-                        text-align: center;
-                        span {
-                            display: block;
-                            margin: 15px auto;
+                    .info{
+                        &-container {
+                            width: 33.3%;
+                            text-align: center;
+                            span {
+                                display: block;
+                                margin: 15px auto;
+                            }
+                            &:first-child {
+                                text-align: left;
+                            }
+                            &:last-child {
+                                text-align: right;
+                            }
                         }
-                        &:first-child {
-                            text-align: left;
-                        }
-                        &:last-child {
-                            text-align: right;
+                        &-alerts{
+                            width: 100%;
+                            border-top: 0.5px solid white; 
+                            text-align: center;
+                            margin: auto;
+                            h2{
+                                margin-bottom: 0;
+                            }
+                            ul{
+                                list-style-type: none;
+                                padding: 0;
+                                margin-top: 10px;
+                            }
                         }
                     }
                 }
@@ -176,14 +191,14 @@
                         color: white;
                         font-size: 200%;
                         cursor: pointer;
-                        transition-duration: .3s;
-                        &:hover{
-                            color: gray
+                        transition-duration: 0.3s;
+                        &:hover {
+                            color: gray;
                         }
                     }
                 }
-                ul{
-                    margin: 0
+                ul {
+                    margin: 0;
                 }
                 @include weatherIcons();
             }

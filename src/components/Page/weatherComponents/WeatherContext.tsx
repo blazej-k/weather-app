@@ -15,7 +15,7 @@ const WeatherProvider: FC = ({ children }) => {
 
     return (
         <WeatherContext.Provider value={{weather, changeWeather}}>
-                {children}
+            {children}
         </WeatherContext.Provider>
 
     );
