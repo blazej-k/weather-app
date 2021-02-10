@@ -39,6 +39,26 @@
     }
 }
 
+.header{
+    text-align: center;
+    h1{
+        font-size: 700%;
+        width: 100%;
+        margin: auto;
+        font-style: italic;
+        span{
+            color: rgb(150, 6, 150);
+        }
+    }
+    .desc{
+        font-size: 150%;
+        opacity: .8;
+        width: 65%;
+        margin: auto;
+        margin-top: 40px;
+    }
+}
+
 .content {
     margin: 40px;
     h1 {

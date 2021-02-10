@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useContext, useEffect, useMemo, useState } from 'react'
+import React, { ChangeEvent, FC, useEffect, useState } from 'react'
 import * as env from 'process'
 import Browser from './search/Browser'
 import { Subject } from 'rxjs'
@@ -33,7 +33,8 @@ const WeatherWrapper: FC = () => {
 
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-        weatherState.error && setWeatherState({ ...weatherState, error: true })
+        // weatherState.error && setWeatherState({ ...weatherState, error: true })
+        setWeatherState({ ...weatherState, error: false })
         const { value } = e.target
         setCityName(value)
         subject.next(value)
@@ -72,6 +73,7 @@ const WeatherWrapper: FC = () => {
     }, [])
 
     useEffect(() => {
+        console.log('render')
         if ('coord' in weather) {
             const { lat, lon } = weather.coord
             const ENDPOINT = `${FUTURE_WEATHER}lat=${lat}&lon=${lon}&lang=${language.slice(0, 2)}`

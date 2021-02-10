@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useMemo, useState } from 'react'
 import Hourly from './Hourly';
 import Now from './Now';
 import Daily from './Daily';
@@ -15,6 +15,7 @@ const Scores: FC<ScoresProps> = ({ weatherType, cityName }) => {
     const weather = useWeather().weather
 
     useEffect(() => {
+        console.log('ok')
         if (cityName?.length !== 0) {
             setName(cityName)
         }

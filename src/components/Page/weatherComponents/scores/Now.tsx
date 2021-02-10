@@ -18,8 +18,6 @@ const Now: FC = () => {
         setIconName(getIconName(icon))
     }, [icon])
 
-    console.log(weather.alerts)
-
     return (
         <div className='Weather-now' data-aos="fade-up" data-aos-once={true}>
             <div className="main">
