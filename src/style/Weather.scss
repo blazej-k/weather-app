@@ -6,6 +6,7 @@
         padding: 0;
         display: flex;
         flex-wrap: wrap;
+        margin: 0 auto;
         li {
             text-align: center;
             width: 12.5%;
@@ -64,6 +65,21 @@
         span{
             display: inline-block;
         }
+    }
+}
+.footer{
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    border-top: 0.5px solid white;
+    margin-top: 90px;
+}
+.slider{
+    width: 40%;
+    margin: 45px auto;
+    img{
+        border-radius: 45px;
+        opacity: .8;
     }
 }
 

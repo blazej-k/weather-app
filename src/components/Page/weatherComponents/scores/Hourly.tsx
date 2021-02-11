@@ -30,9 +30,11 @@ const Hourly: FC = () => {
                 <h2>Next hours:</h2>
                 <button onClick={() => handleButton('next')}><IoIosArrowForward/></button>
             </div>
+            <div className="info">
             <ul style={style}>
                 {weather.slice(index - 8, index).map(hour => <IconsComponent key={hour.dt} element={hour}/>)}
             </ul>
+            </div>
         </div>
     );
 }
