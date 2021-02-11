@@ -73,7 +73,6 @@ const WeatherWrapper: FC = () => {
     }, [])
 
     useEffect(() => {
-        console.log('render')
         if ('coord' in weather) {
             const { lat, lon } = weather.coord
             const ENDPOINT = `${FUTURE_WEATHER}lat=${lat}&lon=${lon}&lang=${language.slice(0, 2)}`

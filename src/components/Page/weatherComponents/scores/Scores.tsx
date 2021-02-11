@@ -15,7 +15,6 @@ const Scores: FC<ScoresProps> = ({ weatherType, cityName }) => {
     const weather = useWeather().weather
 
     useEffect(() => {
-        console.log('ok')
         if (cityName?.length !== 0) {
             setName(cityName)
         }
@@ -24,7 +23,7 @@ const Scores: FC<ScoresProps> = ({ weatherType, cityName }) => {
     return (
         <>
             <h1>{name}</h1>
-            {'id' in weather && 'Loading...'}
+            {'id' in weather && <div className="loader">Loading...</div>}
             {(weatherType === 'now' || weatherType === '') && 'current' in weather && <Now />}
             {weatherType === 'hourly' && 'hourly' in weather && <Hourly />}
             {weatherType === 'daily' && 'daily' in weather && <Daily />}

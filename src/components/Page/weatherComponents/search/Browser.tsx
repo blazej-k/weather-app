@@ -25,7 +25,7 @@ const Browser: FC<BrowserProps> = ({ cityName, handleInputChange, error, loading
                 {error && <b>Wrong name of city({cityName})</b>}
             </div>
             <div className="Browser-loading">
-                {loading && 'Loading...'}
+                {loading && <div className="loader">Loading...</div>}
             </div>
         </div>
     );

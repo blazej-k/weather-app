@@ -39,23 +39,32 @@
     }
 }
 
-.header{
+.header {
     text-align: center;
-    h1{
+    h1 {
         font-size: 700%;
         width: 100%;
         margin: auto;
-        font-style: italic;
-        span{
-            color: rgb(150, 6, 150);
+        .logo-wrapper{
+            width: 100%;
+            margin: 0;
+            span{
+                display: inline-block;
+            }
+            span:nth-child(2n) {
+                color: rgb(150, 6, 150);
+            }
         }
     }
-    .desc{
+    .desc {
         font-size: 150%;
-        opacity: .8;
+        opacity: 0.8;
         width: 65%;
         margin: auto;
         margin-top: 40px;
+        span{
+            display: inline-block;
+        }
     }
 }
 
@@ -122,6 +131,98 @@
                     position: relative;
                     top: 3px;
                 }
+                .loader {
+                    color: #ffffff;
+                    font-size: 90px;
+                    text-indent: -9999em;
+                    overflow: hidden;
+                    width: 1em;
+                    height: 1em;
+                    border-radius: 50%;
+                    margin: 72px auto;
+                    position: relative;
+                    -webkit-transform: translateZ(0);
+                    -ms-transform: translateZ(0);
+                    transform: translateZ(0);
+                    -webkit-animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+                    animation: load6 1.7s infinite ease, round 1.7s infinite ease;
+                }
+                @-webkit-keyframes load6 {
+                    0% {
+                        box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em,
+                            0 -0.83em 0 -0.477em;
+                    }
+                    5%,
+                    95% {
+                        box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em,
+                            0 -0.83em 0 -0.477em;
+                    }
+                    10%,
+                    59% {
+                        box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em,
+                            -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+                    }
+                    20% {
+                        box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em,
+                            -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+                    }
+                    38% {
+                        box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em,
+                            -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+                    }
+                    100% {
+                        box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em,
+                            0 -0.83em 0 -0.477em;
+                    }
+                }
+                @keyframes load6 {
+                    0% {
+                        box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em,
+                            0 -0.83em 0 -0.477em;
+                    }
+                    5%,
+                    95% {
+                        box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em,
+                            0 -0.83em 0 -0.477em;
+                    }
+                    10%,
+                    59% {
+                        box-shadow: 0 -0.83em 0 -0.4em, -0.087em -0.825em 0 -0.42em, -0.173em -0.812em 0 -0.44em,
+                            -0.256em -0.789em 0 -0.46em, -0.297em -0.775em 0 -0.477em;
+                    }
+                    20% {
+                        box-shadow: 0 -0.83em 0 -0.4em, -0.338em -0.758em 0 -0.42em, -0.555em -0.617em 0 -0.44em,
+                            -0.671em -0.488em 0 -0.46em, -0.749em -0.34em 0 -0.477em;
+                    }
+                    38% {
+                        box-shadow: 0 -0.83em 0 -0.4em, -0.377em -0.74em 0 -0.42em, -0.645em -0.522em 0 -0.44em,
+                            -0.775em -0.297em 0 -0.46em, -0.82em -0.09em 0 -0.477em;
+                    }
+                    100% {
+                        box-shadow: 0 -0.83em 0 -0.4em, 0 -0.83em 0 -0.42em, 0 -0.83em 0 -0.44em, 0 -0.83em 0 -0.46em,
+                            0 -0.83em 0 -0.477em;
+                    }
+                }
+                @-webkit-keyframes round {
+                    0% {
+                        -webkit-transform: rotate(0deg);
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        -webkit-transform: rotate(360deg);
+                        transform: rotate(360deg);
+                    }
+                }
+                @keyframes round {
+                    0% {
+                        -webkit-transform: rotate(0deg);
+                        transform: rotate(0deg);
+                    }
+                    100% {
+                        -webkit-transform: rotate(360deg);
+                        transform: rotate(360deg);
+                    }
+                }
             }
             &-now {
                 .main {
@@ -163,7 +264,7 @@
                     font-size: 155%;
                     display: flex;
                     flex-wrap: wrap;
-                    .info{
+                    .info {
                         &-container {
                             width: 33.3%;
                             text-align: center;
@@ -178,15 +279,15 @@
                                 text-align: right;
                             }
                         }
-                        &-alerts{
+                        &-alerts {
                             width: 100%;
-                            border-top: 0.5px solid white; 
+                            border-top: 0.5px solid white;
                             text-align: center;
                             margin: auto;
-                            h2{
+                            h2 {
                                 margin-bottom: 0;
                             }
-                            ul{
+                            ul {
                                 list-style-type: none;
                                 padding: 0;
                                 margin-top: 10px;
