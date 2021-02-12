@@ -1,39 +1,33 @@
-import React, { FC } from 'react'
+import React, { FC, useEffect, useState } from 'react'
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/scss/image-gallery.scss"
+
+interface ImagesAdresses{
+    original: string
+}
 
 
 const Slider: FC = () => {
 
-    const images = [
-        {
-            original: '../assets/images/slider/zdj1.jpg'
-        },
-        {
-            original: '../assets/images/slider/zdj2.jpg'
-        },
-        {
-            original: '../assets/images/slider/zdj3.jpg'
-        },
-        {
-            original: '../assets/images/slider/zdj4.jpg'
-        },
-        {
-            original: '../assets/images/slider/zdj5.jpg'
-        },
-        {
-            original: '../assets/images/slider/zdj6.jpg'
-        },
-        {
-            original: '../assets/images/slider/zdj7.jpg'
-        },
-        {
-            original: '../assets/images/slider/zdj8.jpg'
+    const [images, setImages] = useState<ImagesAdresses[]>([])
+
+    useEffect(() => {
+        const photoNumbers: number[] = []
+        const imagesArr = []
+        for(let i = 0; i < 5;){
+            const number = Math.floor(Math.random() * 8) + 1
+            if(photoNumbers.indexOf(number) === -1){
+                photoNumbers.push(number)
+                imagesArr.push({original: `../assets/images/slider/zdj${number}.jpg`})
+                i++
+            }
         }
-    ]
+        setImages(imagesArr)
+    }, [])
 
     return (
         <div className="slider" data-aos="fade-up" data-aos-duration="700">
+            {images.length > 0 &&
             <ImageGallery
                 items={images}
                 infinite={true}
@@ -45,7 +39,7 @@ const Slider: FC = () => {
                 showPlayButton={false}
                 slideInterval={6000}
                 slideDuration={350}
-            />
+            />}
         </div>
     );
 }
