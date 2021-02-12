@@ -7,14 +7,18 @@ import WeatherWrapper from './Page/weatherComponents/WeatherWrapper';
 
 const Page: FC = () => {
     return (
-        <>
-            <Header />
-            <Slider />
-            <WeatherProvider>
-                <WeatherWrapper/>
-            </WeatherProvider>
-            <Footer/>
-        </>
+        <div className="page">
+            <div className="main">
+                <Header />
+                <Slider />
+                <WeatherProvider>
+                    <WeatherWrapper />
+                </WeatherProvider>
+            </div>
+            <div className="footer-wrapper">
+                <Footer />
+            </div>
+        </div>
     );
 }
 

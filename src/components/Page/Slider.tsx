@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useLayoutEffect, useState } from 'react'
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/scss/image-gallery.scss"
 
@@ -11,7 +11,7 @@ const Slider: FC = () => {
 
     const [images, setImages] = useState<ImagesAdresses[]>([])
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const photoNumbers: number[] = []
         const imagesArr = []
         for(let i = 0; i < 5;){
@@ -27,7 +27,6 @@ const Slider: FC = () => {
 
     return (
         <div className="slider" data-aos="fade-up" data-aos-duration="700">
-            {images.length > 0 &&
             <ImageGallery
                 items={images}
                 infinite={true}
@@ -39,7 +38,7 @@ const Slider: FC = () => {
                 showPlayButton={false}
                 slideInterval={6000}
                 slideDuration={350}
-            />}
+            />
         </div>
     );
 }

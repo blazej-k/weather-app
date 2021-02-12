@@ -86,22 +86,22 @@ const WeatherWrapper: FC = () => {
     }, [weather])
 
     return (
-            <div className="content">
-                <h1>Search your area</h1>
-                <Browser cityName={cityName} error={error} loading={loading} handleInputChange={handleInput} />
-                {Object.entries(weather).length > 0 && <div className='Weather'>
-                    <div className="Weather-nav">
-                        <ul>
-                            <li onClick={() => setWeatherType('now')}>Now</li>
-                            <li onClick={() => setWeatherType('hourly')}>Hourly</li>
-                            <li onClick={() => setWeatherType('daily')}>Daily</li>
-                        </ul>
-                    </div>
-                    <div className="Weather-scores">
-                        <Scores cityName={'name' in weather ? weather.name : ''} weatherType={weatherType} />
-                    </div>
-                </div>}
-            </div>
+        <div className="content" data-aos="fade-up" data-aos-once="true">
+            <h1>Search your area</h1>
+            <Browser cityName={cityName} error={error} loading={loading} handleInputChange={handleInput} />
+            {Object.entries(weather).length > 0 && <div className='Weather'>
+                <div className="Weather-nav">
+                    <ul>
+                        <li onClick={() => setWeatherType('now')}>Now</li>
+                        <li onClick={() => setWeatherType('hourly')}>Hourly</li>
+                        <li onClick={() => setWeatherType('daily')}>Daily</li>
+                    </ul>
+                </div>
+                <div className="Weather-scores">
+                    <Scores cityName={'name' in weather ? weather.name : ''} weatherType={weatherType} />
+                </div>
+            </div>}
+        </div>
     );
 }
 
