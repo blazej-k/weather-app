@@ -34,7 +34,7 @@ const Now: FC = () => {
             </div>
             <div className='rest-info'>
                 <div className='info-container'>
-                    <span>Sunrise:&nbsp; 
+                    <span>Sunrise:&nbsp;
                         {validateDate(new Date(sunrise * 1000), 'HH:mm')}
                     </span>
                     <span>Sunset:&nbsp;
@@ -52,17 +52,17 @@ const Now: FC = () => {
                     <span>UVI index: {uvi}</span>
                     <span>Humidity: {humidity} %</span>
                 </div>
-                {'alerts' in weather && 
-                    <div className="info-alerts">
-                        <h2>Alerts</h2>
-                        <ul>
-                        {weather.alerts.map(({description, start}) => (
+            </div>
+            {'alerts' in weather &&
+                <div className="alerts">
+                    <h2>Alerts</h2>
+                    <ul>
+                        {weather.alerts.map(({ description, start }) => (
                             description.length > 0 && <li key={start}>{description}</li>
                         ))}
-                        </ul>
-                    </div>
-                }
-            </div>
+                    </ul>
+                </div>
+            }
         </div>
     );
 }

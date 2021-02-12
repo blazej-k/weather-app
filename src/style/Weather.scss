@@ -299,20 +299,22 @@
                                 text-align: right;
                             }
                         }
-                        &-alerts {
-                            width: 100%;
-                            border-top: 0.5px solid white;
-                            text-align: center;
-                            margin: auto;
-                            h2 {
-                                margin-bottom: 0;
-                            }
-                            ul {
-                                list-style-type: none;
-                                padding: 0;
-                                margin-top: 10px;
-                            }
-                        }
+                    }
+                }
+                .alerts {
+                    width: 100%;
+                    border-top: 0.5px solid white;
+                    text-align: center;
+                    margin: auto;
+                    font-size: 155%;
+                    font-family: "Noto Sans KR", sans-serif;
+                    h2 {
+                        margin-bottom: 0;
+                    }
+                    ul {
+                        list-style-type: none;
+                        padding: 0;
+                        margin-top: 10px;
                     }
                 }
             }
