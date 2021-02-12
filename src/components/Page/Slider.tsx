@@ -38,12 +38,12 @@ const Slider: FC = () => {
                 items={images}
                 infinite={true}
                 showThumbnails={false}
-                autoPlay={false}
+                autoPlay={true}
                 showBullets={true}
                 showFullscreenButton={false}
                 showNav={false}
                 showPlayButton={false}
-                slideInterval={8000}
+                slideInterval={6000}
                 slideDuration={350}
             />
         </div>

@@ -45,10 +45,10 @@
         font-size: 700%;
         width: 100%;
         margin: auto;
-        .logo-wrapper{
+        .logo-wrapper {
             width: 100%;
             margin: 0;
-            span{
+            span {
                 display: inline-block;
             }
             span:nth-child(2n) {
@@ -62,24 +62,27 @@
         width: 65%;
         margin: auto;
         margin-top: 40px;
-        span{
+        span {
             display: inline-block;
         }
     }
 }
-.footer{
+.footer {
     width: 100%;
     margin: auto;
     text-align: center;
     border-top: 0.5px solid white;
     margin-top: 90px;
 }
-.slider{
-    width: 40%;
+.slider {
+    width: 60%;
     margin: 45px auto;
-    img{
+    background-color: black;
+    border-radius: 45px;
+    overflow: hidden;
+    img {
         border-radius: 45px;
-        opacity: .8;
+        opacity: 0.8;
     }
 }
 
@@ -115,7 +118,7 @@
         &-error {
             margin-top: 20px;
         }
-        &-loading{
+        &-loading {
             .loader {
                 color: #ffff;
                 font-size: 90px;
