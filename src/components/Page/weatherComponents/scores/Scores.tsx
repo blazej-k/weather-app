@@ -1,8 +1,8 @@
 import React, { FC, useEffect, useMemo, useState } from 'react'
-import Hourly from './Hourly';
 import Now from './Now';
-import Daily from './Daily';
 import { useWeather } from '../hooks/weatherHooks';
+import { useMediaQuery } from 'react-responsive';
+import FutureWeather from './helpers/FutureWeather';
 
 interface ScoresProps {
     weatherType: string,
@@ -12,6 +12,8 @@ interface ScoresProps {
 const Scores: FC<ScoresProps> = ({ weatherType, cityName }) => {
 
     const [name, setName] = useState('')
+    const mobileDevice = useMediaQuery({ query: '(max-width: 750px)' })
+    const hourlyWeatherLength = useMemo(() => mobileDevice ? 4 : 8, [mobileDevice])
     const weather = useWeather().weather
 
     useEffect(() => {
@@ -25,8 +27,16 @@ const Scores: FC<ScoresProps> = ({ weatherType, cityName }) => {
             <h1>{name}</h1>
             {'id' in weather && <div className="loader">Loading...</div>}
             {(weatherType === 'now' || weatherType === '') && 'current' in weather && <Now />}
-            {weatherType === 'hourly' && 'hourly' in weather && <Hourly />}
-            {weatherType === 'daily' && 'daily' in weather && <Daily />}
+            {weatherType === 'hourly' && 'hourly' in weather && <FutureWeather
+                type={'hourly'} 
+                showingArrayLength={hourlyWeatherLength} 
+                fullLengthOfArray={24}
+            />}
+            {weatherType === 'daily' && 'daily' in weather && <FutureWeather 
+                type={'daily'} 
+                showingArrayLength={4} 
+                fullLengthOfArray={8}
+            />}
         </>
     );
 }
