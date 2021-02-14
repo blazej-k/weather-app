@@ -396,16 +396,6 @@
             top: 5px !important;
         }
     }
-    // .Weather-daily{
-    //     li{
-    //         font-size: 60% !important;
-    //         width: 25% !important;
-    //         margin: 0;
-    //         img {
-    //             width: 20% !important;
-    //         }
-    //     }
-    // }
 }
 
 @media (max-width: 650px) {
@@ -439,21 +429,21 @@
         }
         &-hourly {
             li {
-                font-size: 120% !important;
+                font-size: 110% !important;
             }
         }
         &-daily{
             li{
-                font-size: 50% !important;
+                font-size: 110% !important;
             }
         }
-    }
-    .Weather-scores {
-        svg {
-            top: 2px !important;
-        }
-        h1 > svg {
-            top: 3px !important;
+        &-scores {
+            svg {
+                top: 2px !important;
+            }
+            h1 > svg {
+                top: 3px !important;
+            }
         }
     }
 }
@@ -519,9 +509,12 @@
 }
 
 @media (max-width: 420px) {
-    .Weather-hourly {
+    .Weather-hourly, .Weather-daily {
         li {
             font-size: 90% !important;
+            img{
+                width: 50% !important;
+            }
         }
     }
 }
