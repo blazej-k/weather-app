@@ -1,0 +1,160 @@
+@media (max-width: 1000px) {
+    input {
+        width: 50% !important;
+    }
+    .Weather{
+        &-now {
+            font-size: 80% !important;
+        }
+        &-daily{
+            li{
+                font-size: 120% !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 800px) {
+    .Weather {
+        width: 95% !important;
+    }
+    input {
+        width: 50% !important;
+    }
+    .Weather-now {
+        font-size: 70% !important;
+    }
+    .Weather-scores {
+        svg {
+            top: 2.3px !important;
+        }
+        h1 > svg {
+            top: 5px !important;
+        }
+    }
+    li > img{
+        width: 50% !important;
+    }
+}
+
+@media (max-width: 650px) {
+    .header {
+        h1 {
+            font-size: 520%;
+        }
+    }
+    .slider {
+        width: 70% !important;
+        border-radius: 20px;
+    }
+    .Browser-search {
+        input {
+            font-size: 75% !important;
+        }
+        span {
+            font-size: 85% !important;
+        }
+    }
+
+    .Weather {
+        &-nav {
+            li {
+                margin: auto 20px !important;
+                font-size: 150% !important;
+            }
+        }
+        &-now {
+            font-size: 50% !important;
+        }
+        &-hourly {
+            li {
+                font-size: 110% !important;
+            }
+        }
+        &-daily{
+            li{
+                font-size: 110% !important;
+            }
+        }
+        &-scores {
+            svg {
+                top: 2px !important;
+            }
+            h1 > svg {
+                top: 3px !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 510px) {
+    .content {
+        h1 {
+            font-size: 200%;
+        }
+    }
+    .Browser-search {
+        input {
+            font-size: 65% !important;
+            width: 70%;
+        }
+        span {
+            font-size: 75% !important;
+        }
+    }
+
+    .Weather-nav {
+        li {
+            margin: auto 10px !important;
+            font-size: 120% !important;
+        }
+    }
+}
+
+@media (max-width: 470px) {
+    .header {
+        h1 {
+            font-size: 320%;
+        }
+        .desc {
+            font-size: 120%;
+            width: 70%;
+        }
+    }
+    .content {
+        h1 {
+            font-size: 170%;
+        }
+        margin: auto 10px;
+    }
+    .Weather {
+        width: 100% !important;
+        margin: 20px 0 !important;
+        h1 {
+            font-size: 300%;
+        }
+        &-now {
+            .info-container {
+                width: 100% !important;
+                text-align: center !important;
+                font-size: 150%;
+                margin: 10px auto;
+                span {
+                    width: 100% !important;
+                    display: block !important;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 420px) {
+    .Weather-hourly, .Weather-daily {
+        li {
+            font-size: 90% !important;
+            img{
+                width: 50% !important;
+            }
+        }
+    }
+}
