@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Raleway:wght@100;200&display=swap");
-
 @mixin weatherIcons {
     ul {
         list-style-type: none;
@@ -11,7 +9,7 @@
             text-align: center;
             width: 12.5%;
             margin: auto;
-            font-family: "Noto Sans KR", sans-serif;
+            font-family: $first_font;
             font-size: 150%;
             b.now {
                 display: block;
@@ -36,51 +34,6 @@
         text-align: center;
         width: 100%;
         margin: 20px auto;
-    }
-}
-
-.header {
-    text-align: center;
-    h1 {
-        font-size: 700%;
-        width: 100%;
-        margin: auto;
-        .logo-wrapper {
-            width: 100%;
-            margin: 0;
-            span {
-                display: inline-block;
-            }
-            span:nth-child(2n) {
-                color: rgb(150, 6, 150);
-            }
-        }
-    }
-    .desc {
-        font-size: 150%;
-        opacity: 0.8;
-        width: 65%;
-        margin: auto;
-        margin-top: 40px;
-        span {
-            display: inline-block;
-        }
-    }
-}
-.footer {
-    width: 100%;
-    margin: auto;
-    text-align: center;
-    border-top: 0.5px solid white;
-    margin-top: 90px;
-}
-.slider {
-    width: 60%;
-    margin: 45px auto;
-    overflow: hidden;
-    border-radius: 45px;
-    img {
-        opacity: 0.8;
     }
 }
 
@@ -123,25 +76,25 @@
     .Weather {
         width: 80%;
         margin: 50px auto;
-        .Weather-nav {
-            width: 100%;
-            margin: auto;
-            text-align: center;
-            ul {
-                padding: 0;
-                li { 
-                    display: inline-block;
-                    margin: auto 30px;
-                    font-size: 200%;
-                    cursor: pointer;
-                    transition-duration: 0.3s;
-                    &:hover {
-                        color: rgb(10, 10, 179);
+        .Weather {
+            &-nav {
+                width: 100%;
+                margin: auto;
+                text-align: center;
+                ul {
+                    padding: 0;
+                    li { 
+                        display: inline-block;
+                        margin: auto 30px;
+                        font-size: 200%;
+                        cursor: pointer;
+                        transition-duration: 0.3s;
+                        &:hover {
+                            color: rgb(10, 10, 179);
+                        }
                     }
                 }
             }
-        }
-        .Weather {
             &-scores {
                 border: 0.5px solid white;
                 border-radius: 10px;
@@ -158,7 +111,7 @@
                     margin-bottom: 20px;
                     border-bottom: 0.5px solid white;
                     * {
-                        font-family: "Noto Sans KR", sans-serif;
+                        font-family: $first_font;
                     }
 
                     > h1 > svg {
@@ -170,7 +123,7 @@
                     }
                 }
                 .description {
-                    font-family: "Raleway", sans-serif;
+                    font-family: $second_font;
                     width: 100%;
                     margin: auto;
                     text-align: center;
@@ -187,7 +140,7 @@
                     }
                 }
                 .rest-info {
-                    font-family: "Noto Sans KR", sans-serif;
+                    font-family: $first_font;
                     font-size: 155%;
                     display: flex;
                     flex-wrap: wrap;
@@ -214,7 +167,7 @@
                     text-align: center;
                     margin: auto;
                     font-size: 155%;
-                    font-family: "Noto Sans KR", sans-serif;
+                    font-family: $first_font;
                     h2 {
                         margin-bottom: 0;
                     }
@@ -270,5 +223,3 @@
         }
     }
 }
-
-@import './_breakpoints'

@@ -1,0 +1,44 @@
+.header {
+    text-align: center;
+    h1 {
+        font-size: 700%;
+        width: 100%;
+        margin: auto;
+        .logo-wrapper {
+            width: 100%;
+            margin: 0;
+            span {
+                display: inline-block;
+            }
+            span:nth-child(2n) {
+                color: rgb(150, 6, 150);
+            }
+        }
+    }
+    .desc {
+        font-size: 150%;
+        opacity: 0.8;
+        width: 65%;
+        margin: auto;
+        margin-top: 40px;
+        span {
+            display: inline-block;
+        }
+    }
+}
+.footer {
+    width: 100%;
+    margin: auto;
+    text-align: center;
+    border-top: 0.5px solid white;
+    margin-top: 90px;
+}
+.slider {
+    width: 60%;
+    margin: 45px auto;
+    overflow: hidden;
+    border-radius: 45px;
+    img {
+        opacity: 0.8;
+    }
+}

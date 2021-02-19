@@ -1,13 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&family=Raleway:wght@100;200&display=swap");
 
-$primary-color: red;
-
-img{
-    width: 10%;
-}
+$first_font: "Noto Sans KR", sans-serif;
+$second_font: "Raleway", sans-serif;
 
 body{
     color: white;
-    font-family: 'Raleway', sans-serif;
+    font-family: $second_font;
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(43,51,224,1) 0%, rgba(38,104,211,1) 30%, rgba(11,126,157,1) 68%);
+    @import './_otherSections';
+    @import './_weather';
+    @import './_breakpoints';
 }

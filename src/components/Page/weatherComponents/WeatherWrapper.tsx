@@ -4,7 +4,7 @@ import Browser from './search/Browser'
 import { Subject } from 'rxjs'
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import Scores from './scores/Scores';
-import '../../../style/Weather.scss'
+// import '../../../style/Weather.scss'
 import { useWeather } from './hooks/weatherHooks';
 
 const subject = new Subject<string>();
