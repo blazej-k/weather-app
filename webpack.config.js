@@ -10,7 +10,7 @@ module.exports = () => {
     return {
         entry: '/src/index.tsx',
         output: {
-            path: path.resolve(__dirname, 'root'),
+            path: path.resolve(__dirname, 'dist'),
             filename: 'bundle.js'
         },
         resolve: {

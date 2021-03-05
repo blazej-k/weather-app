@@ -15,7 +15,7 @@ const App: FC = () => {
 
     return (
         <Router>
-            <Switch>
+            <Switch> 
                 <Route path='/' exact component={Page} />
                 <Route component={ErrorComponent} />
             </Switch>
