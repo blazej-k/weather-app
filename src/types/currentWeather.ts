@@ -1,4 +1,4 @@
-type WeatherObj = {
+interface WeatherObj {
   coord: {
     lon: number,
     lat: number
@@ -28,7 +28,7 @@ type WeatherObj = {
   rain?: SnowOrRain,
   dt: number,
   sys: {
-    type: number,
+    interface: number,
     id: number,
     message: number,
     country: string,
@@ -41,19 +41,19 @@ type WeatherObj = {
   cod: number
 }
 
-type Weather = {
+interface Weather {
   id: number,
   main: string,
   description: string,
   icon: string
 }
 
-type SnowOrRain = {
+interface SnowOrRain {
   h_1: number,
   h_3: number,
 }
 
-type WeatherState = {
+interface WeatherState {
   loading: boolean,
   error: boolean,
   weather: WeatherObj | OneCallWeatherObj

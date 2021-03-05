@@ -1,4 +1,4 @@
-type Current = {
+interface Current {
     dt: number,
     sunrise: number,
     sunset: number,
