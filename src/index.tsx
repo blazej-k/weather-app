@@ -5,7 +5,7 @@ import Page from './components/Page'
 import ErrorComponent from './components/ErrorComponent'
 import Aos from 'aos'
 import 'aos/dist/aos.css';
-import './style/main.scss'
+import './style/main.scss';
 
 const App: FC = () => {
 
