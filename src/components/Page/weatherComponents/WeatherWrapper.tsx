@@ -4,7 +4,6 @@ import Browser from './search/Browser'
 import { Subject } from 'rxjs'
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import Scores from './scores/Scores';
-// import '../../../style/Weather.scss'
 import { useWeather } from './hooks/weatherHooks';
 
 const subject = new Subject<string>();
@@ -33,7 +32,6 @@ const WeatherWrapper: FC = () => {
 
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
-        // weatherState.error && setWeatherState({ ...weatherState, error: true })
         setWeatherState({ ...weatherState, error: false })
         const { value } = e.target
         setCityName(value)
