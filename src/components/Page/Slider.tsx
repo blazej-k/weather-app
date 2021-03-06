@@ -2,7 +2,7 @@ import React, { FC, useEffect, useLayoutEffect, useState } from 'react'
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/scss/image-gallery.scss"
 
-interface ImagesAdresses{
+interface ImagesAdresses {
     original: string
 }
 
@@ -13,33 +13,37 @@ const Slider: FC = () => {
 
     useLayoutEffect(() => {
         const photoNumbers: number[] = []
-        const imagesArr = []
-        for(let i = 0; i < 5;){
+        const imagesArr: ImagesAdresses[] = []
+        for (let i = 0; i < 5;) {
             const number = Math.floor(Math.random() * 8) + 1
-            if(photoNumbers.indexOf(number) === -1){
+            if (photoNumbers.indexOf(number) === -1) {
                 photoNumbers.push(number)
-                imagesArr.push({original: `../assets/images/slider/zdj${number}.jpg`})
+                import(`../../assets/images/slider/zdj${number}.jpg`)
+                    .then(res => imagesArr.push({ original: res.default }))
+                    .then(res => res === 5 && setImages(imagesArr))
+                    .then(() => i++)
                 i++
             }
         }
-        setImages(imagesArr)
-    }, [])
+    }, []) 
 
     return (
-        <div className="slider" data-aos="fade-up" data-aos-duration="700">
-            <ImageGallery
-                items={images}
-                infinite={true}
-                showThumbnails={false}
-                autoPlay={true}
-                showBullets={true}
-                showFullscreenButton={false}
-                showNav={false}
-                showPlayButton={false}
-                slideInterval={6000}
-                slideDuration={350}
-            />
-        </div>
+        <>
+            {images.length === 5 && <div className="slider" data-aos="fade-up" data-aos-duration="700">
+                <ImageGallery
+                    items={images}
+                    infinite={true}
+                    showThumbnails={false}
+                    autoPlay={true}
+                    showBullets={true}
+                    showFullscreenButton={false}
+                    showNav={false}
+                    showPlayButton={false}
+                    slideInterval={6000}
+                    slideDuration={350}
+                />
+            </div>}
+        </>
     );
 }
 

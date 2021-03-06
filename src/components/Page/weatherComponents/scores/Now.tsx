@@ -15,7 +15,7 @@ const Now: FC = () => {
 
 
     useEffect(() => {
-        setIconName(getIconName(icon))
+        icon.length > 0 && import(`../../../../assets/icons/${getIconName(icon)}.png`).then(res => setIconName(res.default))
     }, [icon])
 
     return (
@@ -30,7 +30,7 @@ const Now: FC = () => {
                 {description}
             </h2>
             <div className="icon">
-                {iconName.length > 0 && <img src={`../../../assets/icons/${iconName}.png`} alt="" />}
+                {iconName.length > 0 && <img src={iconName} alt='weather-icon'/>}
             </div>
             <div className='rest-info'>
                 <div className='info-container'>

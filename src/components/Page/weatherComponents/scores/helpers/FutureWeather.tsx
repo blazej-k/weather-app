@@ -29,9 +29,15 @@ const FutureWeather: FC<FutureWeatherProps> = ({ type, showingArrayLength, fullL
             opacity: 0,
             transition: '0s'
         })
-        if ((buttonType === 'next') && (index + showingArrayLength > weather.length)) setIndex(showingArrayLength)
-        else if ((buttonType === 'prev') && (index - showingArrayLength <= 0)) setIndex(fullLengthOfArray)
-        else setIndex(prev => buttonType === 'next' ? prev + showingArrayLength : prev - showingArrayLength)
+        if ((buttonType === 'next') && (index + showingArrayLength > weather.length)){
+            setIndex(showingArrayLength)
+        } 
+        else if ((buttonType === 'prev') && (index - showingArrayLength <= 0)){
+            setIndex(fullLengthOfArray)
+        }
+        else {
+            setIndex(prev => buttonType === 'next' ? prev + showingArrayLength : prev - showingArrayLength)
+        }
     }
 
     useEffect(() => {
