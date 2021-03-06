@@ -18,7 +18,7 @@ const Slider: FC = () => {
             const number = Math.floor(Math.random() * 8) + 1
             if (photoNumbers.indexOf(number) === -1) {
                 photoNumbers.push(number)
-                import(`../../assets/images/slider/zdj${number}.jpg`)
+                import(`../../assets/images/slider/img${number}.jpg`)
                     .then(res => imagesArr.push({ original: res.default }))
                     .then(res => res === 5 && setImages(imagesArr))
                     .then(() => i++)
