@@ -9,7 +9,7 @@ import './style/main.scss';
 const App: FC = () => {
 
     useEffect(() => {
-        Aos.init() 
+        Aos.init()
     }, [])
 
     return (

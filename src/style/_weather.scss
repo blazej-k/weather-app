@@ -64,13 +64,15 @@
                 &::-webkit-search-cancel-button {
                     cursor: pointer;
                 }
+                border-radius: 0;
+	            -webkit-appearance: none !important;
             }
         }
         &-error {
             margin-top: 20px;
         }
         &-loading {
-            @import './_loader';
+            @import "./_loader";
         }
     }
     .Weather {
@@ -83,7 +85,7 @@
                 text-align: center;
                 ul {
                     padding: 0;
-                    li { 
+                    li {
                         display: inline-block;
                         margin: auto 30px;
                         font-size: 200%;

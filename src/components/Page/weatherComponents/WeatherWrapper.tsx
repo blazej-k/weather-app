@@ -1,5 +1,4 @@
 import React, { ChangeEvent, FC, useEffect, useState } from 'react'
-import * as env from 'process'
 import Browser from './search/Browser'
 import { Subject } from 'rxjs'
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';

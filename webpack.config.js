@@ -2,9 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
-require('dotenv').config( {
-    path: path.join(__dirname, '.env')
-} );
+const Dotenv = require('dotenv-webpack');
 
 module.exports = () => {
     return {
@@ -62,7 +60,7 @@ module.exports = () => {
                 template: 'src/index.html'
             }),
             new webpack.HotModuleReplacementPlugin(),
-            new webpack.EnvironmentPlugin(['FUTURE_WEATHER', 'WEATHER_NOW']),
+            new Dotenv(),
             new ErrorOverlayPlugin()
         ],
         devServer: {
