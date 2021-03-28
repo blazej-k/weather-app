@@ -1,8 +1,10 @@
 import React, { createContext, FC, useState } from 'react'
+import iconLoader from '../../../assets/icons/loader.png'
 
 interface Context {
     weather: OneCallWeatherObj,
     changeWeather: (weather: OneCallWeatherObj) => void
+    iconLoader: string
 }
 
 const WeatherProvider: FC = ({ children }) => {
@@ -12,9 +14,10 @@ const WeatherProvider: FC = ({ children }) => {
     const changeWeather = (weather: OneCallWeatherObj) => {
         setWeather(weather)
     }
+    console.log(iconLoader)
 
     return (
-        <WeatherContext.Provider value={{weather, changeWeather}}>
+        <WeatherContext.Provider value={{weather, changeWeather, iconLoader}}>
             {children}
         </WeatherContext.Provider>
 
@@ -22,4 +25,4 @@ const WeatherProvider: FC = ({ children }) => {
 }
 
 export default WeatherProvider;
-export const WeatherContext = createContext<Context>({weather: {} as OneCallWeatherObj, changeWeather: () => {}})
+export const WeatherContext = createContext<Context>({weather: {} as OneCallWeatherObj, changeWeather: () => {}, iconLoader})

@@ -8,7 +8,7 @@ import { useWeather } from '../hooks/weatherHooks'
 const Now: FC = () => {
 
     const [iconName, setIconName] = useState('')
-    const weather = useWeather().weather
+    const {weather, iconLoader} = useWeather()
 
     const { temp, sunset, sunrise, wind_speed, pressure, clouds, visibility, uvi, humidity } = weather.current
     const { main, description, icon } = weather.current.weather[0]
@@ -30,7 +30,7 @@ const Now: FC = () => {
                 {description}
             </h2>
             <div className="icon">
-                {iconName.length > 0 && <img src={iconName} alt='weather-icon'/>}
+                {iconName.length > 0 ? <img src={iconName} alt='weather-icon'/> : <img src={iconLoader} alt='icon-loader'/>}
             </div>
             <div className='rest-info'>
                 <div className='info-container'>
