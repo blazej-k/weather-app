@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useRef, useState } from 'react'
 import { RiCelsiusLine } from 'react-icons/ri';
 import { useWeather } from '../../hooks/weatherHooks';
 import getIconName from './getIconName';
@@ -15,12 +15,13 @@ const IconWrapper: FC<IconWrapperProps> = ({ element }) => {
     const { temp } = element
     const now = new Date().getHours()
     const apiTime = new Date(element.dt * 1000)
+    const [show, setShow] = useState(false)
 
     const iconLoader = useWeather().iconLoader
 
     useEffect(() => {
-        import(`../../../../../assets/icons/${getIconName(element.weather[0].icon)}.png`).then(res => setIconName(res.default))
-    }, [])
+        show === true && import(`../../../../../assets/icons/${getIconName(element.weather[0].icon)}.png`).then(res => setIconName(res.default))
+    }, [show])
 
     //when temp is number it's hourly, if not - daily
 
@@ -30,8 +31,7 @@ const IconWrapper: FC<IconWrapperProps> = ({ element }) => {
             <br/>
             <b>{validateDate(apiTime, typeof temp === 'number' ? 'HH:mm' : 'DD/MM')}</b><br />
             {Math.round(typeof temp === 'number' ? temp : temp.day)} <RiCelsiusLine /><br />
-            {iconName.length > 0 ? <img src={iconName} alt="weather" /> : <img src={iconLoader} alt='loader'/>}
-            {/* <img src={iconName} alt='loader' onLoad={() => console.log('loaded')}/> */}
+            {iconName.length > 0 ? <img src={iconName} alt="weather" /> : <img onLoad={() => setShow(true)} src={iconLoader} alt='loader'/>}
         </li>
     );
 }

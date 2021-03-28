@@ -8,6 +8,7 @@ import { useWeather } from '../hooks/weatherHooks'
 const Now: FC = () => {
 
     const [iconName, setIconName] = useState('')
+    const [showIcon, setShowIcon] = useState(false)
     const {weather, iconLoader} = useWeather()
 
     const { temp, sunset, sunrise, wind_speed, pressure, clouds, visibility, uvi, humidity } = weather.current
@@ -15,8 +16,8 @@ const Now: FC = () => {
 
 
     useEffect(() => {
-        icon.length > 0 && import(`../../../../assets/icons/${getIconName(icon)}.png`).then(res => setIconName(res.default))
-    }, [icon])
+        icon.length > 0 && showIcon && import(`../../../../assets/icons/${getIconName(icon)}.png`).then(res => setIconName(res.default))
+    }, [icon, showIcon])
 
     return (
         <div className='Weather-now' data-aos="fade-up" data-aos-once={true}>
@@ -30,7 +31,7 @@ const Now: FC = () => {
                 {description}
             </h2>
             <div className="icon">
-                {iconName.length > 0 ? <img src={iconName} alt='weather-icon'/> : <img src={iconLoader} alt='icon-loader'/>}
+                {iconName.length > 0 ? <img src={iconName} alt='weather-icon'/> : <img src={iconLoader} onLoad={() => setShowIcon(true)} alt='loader'/>}
             </div>
             <div className='rest-info'>
                 <div className='info-container'>

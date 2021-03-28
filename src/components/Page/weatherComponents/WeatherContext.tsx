@@ -14,7 +14,6 @@ const WeatherProvider: FC = ({ children }) => {
     const changeWeather = (weather: OneCallWeatherObj) => {
         setWeather(weather)
     }
-    console.log(iconLoader)
 
     return (
         <WeatherContext.Provider value={{weather, changeWeather, iconLoader}}>
