@@ -1,8 +1,8 @@
-import React, { FC, useEffect, useMemo, useState } from 'react'
-import Now from './Now';
+import React, { FC, lazy, Suspense, useEffect, useMemo, useState } from 'react'
 import { useWeather } from '../hooks/weatherHooks';
 import { useMediaQuery } from 'react-responsive';
-import FutureWeather from './helpers/FutureWeather';
+const Now = lazy(() => import('./Now'))
+const FutureWeather = lazy(() => import('./helpers/FutureWeather'))
 
 interface ScoresProps {
     weatherType: string,
@@ -23,7 +23,7 @@ const Scores: FC<ScoresProps> = ({ weatherType, cityName }) => {
     }, [cityName])
 
     return (
-        <>
+        <Suspense fallback={null}>
             <h1>{name}</h1>
             {'id' in weather && <div className="loader">Loading...</div>}
             {(weatherType === 'now' || weatherType === '') && 'current' in weather && <Now />}
@@ -37,7 +37,7 @@ const Scores: FC<ScoresProps> = ({ weatherType, cityName }) => {
                 showingArrayLength={4} 
                 fullLengthOfArray={8}
             />}
-        </>
+        </Suspense>
     );
 }
 

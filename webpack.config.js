@@ -33,7 +33,7 @@ module.exports = () => {
                 {
                     test: /\.css$/i,
                     use: ["style-loader", "css-loader"],
-                  },
+                },
                 {
                     test: /\.(png$|jpe?g|gif)$/i,
                     use: [ 
@@ -66,7 +66,7 @@ module.exports = () => {
         devServer: {
             contentBase: path.join(__dirname, 'src'),
             compress: true,
-            port: 8081,
+            port: 8080,
             open: true,
             historyApiFallback: true,
             hot: true,

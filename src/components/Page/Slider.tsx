@@ -41,6 +41,7 @@ const Slider: FC = () => {
                     showPlayButton={false}
                     slideInterval={6000}
                     slideDuration={350}
+                    lazyLoad={true}
                 />
             </div>}
         </>
