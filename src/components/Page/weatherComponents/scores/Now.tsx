@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useMemo, useState } from 'react'
 import { RiCelsiusLine } from 'react-icons/ri'
-import validateDate from './helpers/validateDate'
+import useDateValidation from '../hooks/useDateValidation'
 import getIconName from './helpers/getIconName'
 import { useWeather } from '../hooks/weatherHooks'
 
@@ -13,6 +13,9 @@ const Now: FC = () => {
 
     const { temp, sunset, sunrise, wind_speed, pressure, clouds, visibility, uvi, humidity } = useMemo(() => weather.current, [weather])
     const { main, description, icon } = useMemo(() => weather.current.weather[0], [weather])
+
+    const sunriseTime = useDateValidation(new Date(sunrise * 1000), 'hourly')
+    const sunsetTime = useDateValidation(new Date(sunset * 1000), 'hourly')
 
 
     useEffect(() => {
@@ -36,10 +39,10 @@ const Now: FC = () => {
             <div className='rest-info'>
                 <div className='info-container'>
                     <span>Sunrise:&nbsp;
-                        {validateDate(new Date(sunrise * 1000), 'HH:mm')}
+                        {sunriseTime}
                     </span>
                     <span>Sunset:&nbsp;
-                        {validateDate(new Date(sunset * 1000), 'HH:mm')}
+                        {sunsetTime}
                     </span>
                     <span>Pressure: {pressure} hPa</span>
                 </div>
