@@ -1,4 +1,4 @@
-import React, { createContext, FC, useState } from 'react'
+import React, { createContext, FC, useMemo, useState } from 'react'
 import iconLoader from '../../../assets/icons/loader.png'
 
 interface Context {
@@ -14,9 +14,10 @@ const WeatherProvider: FC = ({ children }) => {
     const changeWeather = (weather: OneCallWeatherObj) => {
         setWeather(weather)
     }
+    const contextValues = useMemo(() => ({weather, changeWeather, iconLoader}), [weather, changeWeather, iconLoader])
 
     return (
-        <WeatherContext.Provider value={{weather, changeWeather, iconLoader}}>
+        <WeatherContext.Provider value={contextValues}>
             {children}
         </WeatherContext.Provider>
 

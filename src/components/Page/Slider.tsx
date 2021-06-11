@@ -1,4 +1,4 @@
-import React, { FC, useLayoutEffect, useState } from 'react'
+import React, { FC, memo, useLayoutEffect, useState } from 'react'
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/scss/image-gallery.scss"
 
@@ -48,4 +48,4 @@ const Slider: FC = () => {
     );
 }
 
-export default Slider;
+export default memo(Slider);

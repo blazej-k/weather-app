@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect, useMemo, useState } from 'react'
 import { RiCelsiusLine } from 'react-icons/ri'
 import validateDate from './helpers/validateDate'
 import getIconName from './helpers/getIconName'
@@ -11,8 +11,8 @@ const Now: FC = () => {
     const [showIcon, setShowIcon] = useState(false)
     const {weather, iconLoader} = useWeather()
 
-    const { temp, sunset, sunrise, wind_speed, pressure, clouds, visibility, uvi, humidity } = weather.current
-    const { main, description, icon } = weather.current.weather[0]
+    const { temp, sunset, sunrise, wind_speed, pressure, clouds, visibility, uvi, humidity } = useMemo(() => weather.current, [weather])
+    const { main, description, icon } = useMemo(() => weather.current.weather[0], [weather])
 
 
     useEffect(() => {

@@ -1,4 +1,4 @@
-import React, { CSSProperties, FC, useEffect, useState } from 'react'
+import React, { CSSProperties, FC, memo, useEffect, useState } from 'react'
 import { useWeather } from '../../hooks/weatherHooks';
 import IconsComponent from './IconsComponent';
 import { useMediaQuery } from 'react-responsive'
@@ -76,4 +76,4 @@ const FutureWeather: FC<FutureWeatherProps> = ({ type, showingArrayLength, fullL
     );
 }
 
-export default FutureWeather;
+export default memo(FutureWeather);

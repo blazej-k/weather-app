@@ -18,16 +18,17 @@ const initState: WeatherState = {
     weather: {} as WeatherObj | OneCallWeatherObj
 }
 
+const WEATHER_NOW = process.env.WEATHER_NOW
+const FUTURE_WEATHER = process.env.FUTURE_WEATHER
+const { language } = window.navigator
+
 const WeatherWrapper: FC = () => {
 
     const [cityName, setCityName] = useState('')
     const [weatherState, setWeatherState] = useState(initState)
     const [weatherType, setWeatherType] = useState('')
-    const WEATHER_NOW = process.env.WEATHER_NOW
-    const FUTURE_WEATHER = process.env.FUTURE_WEATHER
     const { loading, weather, error } = weatherState
-    const { language } = window.navigator
-    const updateWeather = useWeather().changeWeather
+    const { changeWeather: updateWeather } = useWeather()
 
 
     const handleInput = (e: ChangeEvent<HTMLInputElement>) => {

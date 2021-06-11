@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from 'react'
+import React, { FC, memo, useEffect, useMemo, useRef, useState } from 'react'
 import { RiCelsiusLine } from 'react-icons/ri';
 import { useWeather } from '../../hooks/weatherHooks';
 import getIconName from './getIconName';
@@ -12,12 +12,12 @@ const IconWrapper: FC<IconWrapperProps> = ({ element }) => {
 
     const [iconName, setIconName] = useState('')
 
-    const { temp } = element
-    const now = new Date().getHours()
-    const apiTime = new Date(element.dt * 1000)
+    const { temp } = useMemo(() => element, [element])
+    const now = useMemo(() => new Date().getHours(), [])
+    const apiTime = useMemo(() => new Date(element.dt * 1000), [element])
     const [show, setShow] = useState(false)
 
-    const iconLoader = useWeather().iconLoader
+    const {iconLoader} = useWeather()
 
     useEffect(() => {
         show === true && import(`../../../../../assets/icons/${getIconName(element.weather[0].icon)}.png`).then(res => setIconName(res.default))
@@ -36,4 +36,4 @@ const IconWrapper: FC<IconWrapperProps> = ({ element }) => {
     );
 }
 
-export default IconWrapper;
+export default memo(IconWrapper);
