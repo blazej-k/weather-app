@@ -6,7 +6,7 @@ const useDateValidation = (date: Date, format: 'hourly' | 'daily') => {
     }
     else{
         const hour = date.getHours() > 9 ? date.getHours() : `0${date.getHours()}`
-        const minutes = date.getMinutes() > 9 ? date.getMinutes() + 1 : `0${date.getMinutes()}`
+        const minutes = date.getMinutes() > 9 ? date.getMinutes() : `0${date.getMinutes()}`
         return `${hour}:${minutes}`
     }
 }

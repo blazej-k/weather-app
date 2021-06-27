@@ -26,7 +26,6 @@
     "aos": "^2.3.4",
     "babel-loader": "^8.2.2",
     "css-loader": "^5.0.1",
-    "date-and-time": "^0.14.2",
     "dotenv": "^8.2.0",
     "dotenv-webpack": "^7.0.2",
     "error-overlay-webpack-plugin": "^0.4.1",
