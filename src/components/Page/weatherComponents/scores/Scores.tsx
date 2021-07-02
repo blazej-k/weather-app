@@ -1,4 +1,4 @@
-import React, { FC, lazy, Suspense, useEffect, useMemo, useState } from 'react'
+import React, { FC, lazy, useMemo } from 'react'
 import { useWeather } from '../hooks/useWeather';
 import { useMediaQuery } from 'react-responsive';
 const Now = lazy(() => import('./Now'))
@@ -6,37 +6,29 @@ const FutureWeather = lazy(() => import('./helpers/FutureWeather'))
 
 interface ScoresProps {
     weatherType: string,
-    cityName: string
 }
 
-const Scores: FC<ScoresProps> = ({ weatherType, cityName }) => {
+const Scores: FC<ScoresProps> = ({ weatherType }) => {
 
-    const [name, setName] = useState('')
     const mobileDevice = useMediaQuery({ query: '(max-width: 750px)' })
     const hourlyWeatherLength = useMemo(() => mobileDevice ? 4 : 8, [mobileDevice])
-    const { weather } = useWeather()
-
-    useEffect(() => {
-        if (cityName?.length !== 0) {
-            setName(cityName)
-        }
-    }, [cityName])
+    const { cityName } = useWeather()
 
     return (
-        <Suspense fallback={null}>
-            <h1>{name}</h1>
-            {(weatherType === 'now') && 'current' in weather && <Now />}
-            {weatherType === 'hourly' && 'hourly' in weather && <FutureWeather
+        <div className="Weather-scores">
+            <h1>{cityName}</h1>
+            {(weatherType === 'now') && <Now />}
+            {weatherType === 'hourly' && <FutureWeather
                 type='hourly'
                 showingArrayLength={hourlyWeatherLength}
                 fullLengthOfArray={24}
             />}
-            {weatherType === 'daily' && 'daily' in weather && <FutureWeather
+            {weatherType === 'daily' && <FutureWeather
                 type='daily'
                 showingArrayLength={4}
                 fullLengthOfArray={8}
             />}
-        </Suspense>
+        </div>
     );
 }
 

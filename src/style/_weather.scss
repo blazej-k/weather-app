@@ -39,6 +39,7 @@
 
 .content {
     margin: 40px;
+    @import "./_loader";
     h1 {
         width: 100%;
         margin: auto;
@@ -70,9 +71,6 @@
         }
         &-error {
             margin-top: 20px;
-        }
-        &-loading {
-            @import "./_loader";
         }
     }
     .Weather {

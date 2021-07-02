@@ -16,8 +16,7 @@ const Now: FC = () => {
 
     const sunriseTime = useDateValidation(new Date(sunrise * 1000), 'hourly')
     const sunsetTime = useDateValidation(new Date(sunset * 1000), 'hourly')
-
-
+    
     useEffect(() => {
         icon.length > 0 && showIcon && import(`../../../../assets/icons/${getIconName(icon)}.png`).then(res => setIconName(res.default))
     }, [icon, showIcon])

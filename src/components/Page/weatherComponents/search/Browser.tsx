@@ -1,13 +1,19 @@
-import React, { ChangeEvent, FC } from 'react'
+import React, { ChangeEvent, FC, useState } from 'react'
 
 interface BrowserProps {
-    cityName: string,
     error: boolean,
     loading: boolean,
-    handleInputChange: (e: ChangeEvent<HTMLInputElement>) => void,
+    handleInputChange: (city: string) => void,
 }
 
-const Browser: FC<BrowserProps> = ({ cityName, handleInputChange, error, loading }) => {
+const Browser: FC<BrowserProps> = ({ handleInputChange, error, loading }) => {
+    const [cityName, setCityName] = useState('')
+
+    const handleInput = (e: ChangeEvent<HTMLInputElement>) => {
+        setCityName(e.target.value)
+        handleInputChange(e.target.value)
+    }
+
     return (
         <div className="Browser-wrapper">
             <div className="Browser-search">
@@ -15,7 +21,7 @@ const Browser: FC<BrowserProps> = ({ cityName, handleInputChange, error, loading
                 <input 
                     type='search' 
                     value={cityName} 
-                    onChange={handleInputChange} 
+                    onChange={handleInput} 
                     autoComplete='off' 
                     autoCorrect='off' 
                     autoCapitalize='off'

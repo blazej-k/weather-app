@@ -3,18 +3,22 @@ import iconLoader from '../../../assets/icons/loader.png'
 
 interface Context {
     weather: OneCallWeatherObj,
+    iconLoader: string,
+    cityName: string
     changeWeather: (weather: OneCallWeatherObj) => void
-    iconLoader: string
+    changeCityName: (input: string) => void,
 }
 
 const WeatherProvider: FC = ({ children }) => {
 
     const [weather, setWeather] = useState({} as OneCallWeatherObj)
+    const [cityName, setCityName] = useState('')
 
-    const changeWeather = (weather: OneCallWeatherObj) => {
-        setWeather(weather)
-    }
-    const contextValues = useMemo(() => ({weather, changeWeather, iconLoader}), [weather, changeWeather, iconLoader])
+    const changeWeather = (weather: OneCallWeatherObj) => setWeather(weather)
+
+    const changeCityName = (input: string) => setCityName(input)
+
+    const contextValues = useMemo(() => ({weather, changeWeather, changeCityName, iconLoader, cityName}), [weather, iconLoader, cityName])
 
     return (
         <WeatherContext.Provider value={contextValues}>
@@ -25,4 +29,10 @@ const WeatherProvider: FC = ({ children }) => {
 }
 
 export default WeatherProvider;
-export const WeatherContext = createContext<Context>({weather: {} as OneCallWeatherObj, changeWeather: () => {}, iconLoader})
+export const WeatherContext = createContext<Context>({
+    weather: {} as OneCallWeatherObj, 
+    changeWeather: () => {}, 
+    changeCityName: () => {}, 
+    iconLoader,
+    cityName: ''
+})
