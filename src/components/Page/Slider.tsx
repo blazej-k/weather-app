@@ -3,7 +3,8 @@ import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/scss/image-gallery.scss"
 
 interface ImagesAdresses {
-    original: string
+    original: string,
+    originalAlt: 'slider-image'
 }
 
 
@@ -19,7 +20,7 @@ const Slider: FC = () => {
             if (photoNumbers.indexOf(number) === -1) {
                 photoNumbers.push(number)
                 import(`../../assets/images/slider/img${number}.jpg`)
-                    .then(res => imagesArr.push({ original: res.default }))
+                    .then(res => imagesArr.push({ original: res.default, originalAlt: 'slider-image' }))
                     .then(res => res === 5 && setImages(imagesArr))
                     .then(() => i++)
                 i++

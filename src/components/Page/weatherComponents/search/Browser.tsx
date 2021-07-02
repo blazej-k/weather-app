@@ -17,15 +17,17 @@ const Browser: FC<BrowserProps> = ({ handleInputChange, error, loading }) => {
     return (
         <div className="Browser-wrapper">
             <div className="Browser-search">
-                <span>City: </span>
-                <input 
-                    type='search' 
-                    value={cityName} 
-                    onChange={handleInput} 
-                    autoComplete='off' 
-                    autoCorrect='off' 
-                    autoCapitalize='off'
-                />
+                <form>
+                    <label style={{ display: 'inline' }}>City:
+                    <input
+                        type='search'
+                        value={cityName}
+                        onChange={handleInput}
+                        autoComplete='off'
+                        autoCorrect='off'
+                        autoCapitalize='off'
+                    /></label>
+                </form>
             </div>
             <div className="Browser-error">
                 {error && <b>Wrong name of city({cityName})</b>}
