@@ -1,5 +1,5 @@
 import React, { FC, lazy, Suspense, useEffect, useMemo, useState } from 'react'
-import { useWeather } from '../hooks/weatherHooks';
+import { useWeather } from '../hooks/useWeather';
 import { useMediaQuery } from 'react-responsive';
 const Now = lazy(() => import('./Now'))
 const FutureWeather = lazy(() => import('./helpers/FutureWeather'))
@@ -25,8 +25,7 @@ const Scores: FC<ScoresProps> = ({ weatherType, cityName }) => {
     return (
         <Suspense fallback={null}>
             <h1>{name}</h1>
-            {'id' in weather && <div className="loader">Loading...</div>}
-            {(weatherType === 'now' || weatherType === '') && 'current' in weather && <Now />}
+            {(weatherType === 'now') && 'current' in weather && <Now />}
             {weatherType === 'hourly' && 'hourly' in weather && <FutureWeather
                 type='hourly'
                 showingArrayLength={hourlyWeatherLength}

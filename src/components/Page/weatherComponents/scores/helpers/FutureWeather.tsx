@@ -1,5 +1,5 @@
 import React, { CSSProperties, FC, memo, useEffect, useState } from 'react'
-import { useWeather } from '../../hooks/weatherHooks';
+import { useWeather } from '../../hooks/useWeather';
 import IconsComponent from './IconsComponent';
 import { useMediaQuery } from 'react-responsive'
 import NavWrapper from './NavWrapper';

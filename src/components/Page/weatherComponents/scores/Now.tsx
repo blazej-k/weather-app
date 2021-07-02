@@ -2,7 +2,7 @@ import React, { FC, useEffect, useMemo, useState } from 'react'
 import { RiCelsiusLine } from 'react-icons/ri'
 import useDateValidation from '../hooks/useDateValidation'
 import getIconName from './helpers/getIconName'
-import { useWeather } from '../hooks/weatherHooks'
+import { useWeather } from '../hooks/useWeather'
 
 
 const Now: FC = () => {

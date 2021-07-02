@@ -2,7 +2,7 @@ import React, { ChangeEvent, FC, useEffect, useState, lazy, Suspense } from 'rea
 import Browser from './search/Browser'
 import { Subject } from 'rxjs'
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { useWeather } from './hooks/weatherHooks';
+import { useWeather } from './hooks/useWeather';
 const Scores = lazy(() => import('./scores/Scores'))
 
 const subject = new Subject<string>();
@@ -26,7 +26,7 @@ const WeatherWrapper: FC = () => {
 
     const [cityName, setCityName] = useState('')
     const [weatherState, setWeatherState] = useState(initState)
-    const [weatherType, setWeatherType] = useState('')
+    const [weatherType, setWeatherType] = useState('now')
     const { loading, weather, error } = weatherState
     const { changeWeather: updateWeather } = useWeather()
 
@@ -46,14 +46,14 @@ const WeatherWrapper: FC = () => {
                 setWeatherState({ ...weatherState, loading: false })
                 if (!res.ok) {
                     setWeatherState({ ...weatherState, error: true, weather: {} as WeatherObj })
-                    throw new Error('Wrong city');
+                    throw new Error('Invalid name of city');
                 }
                 return res;
             })
             .then(res => res.json())
             .then(res => setWeatherState({ ...weatherState, weather: res }))
-            .catch((err) => {
-                console.log(err)
+            .catch(() => {
+                throw new Error('Invalid name of city')
             })
     }
 
@@ -83,6 +83,8 @@ const WeatherWrapper: FC = () => {
         }
     }, [weather])
 
+    console.log('current' in weather, weather)
+
     return (
         <div className="content" data-aos="fade-up" data-aos-once="true">
             <h1>Search your area</h1>
@@ -97,7 +99,7 @@ const WeatherWrapper: FC = () => {
                         </ul>
                     </div>
                     <div className="Weather-scores">
-                        <Scores cityName={'name' in weather ? weather.name : ''} weatherType={weatherType} />
+                        {'current' in weather && <Scores cityName={cityName} weatherType={weatherType} />}
                     </div>
                 </div>
             </Suspense>}

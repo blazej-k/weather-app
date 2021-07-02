@@ -1,6 +1,6 @@
 import React, { FC, memo, useEffect, useMemo, useRef, useState } from 'react'
 import { RiCelsiusLine } from 'react-icons/ri';
-import { useWeather } from '../../hooks/weatherHooks';
+import { useWeather } from '../../hooks/useWeather';
 import getIconName from './getIconName';
 import useDateValidation from '../../hooks/useDateValidation';
 
