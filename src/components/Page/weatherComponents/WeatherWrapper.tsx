@@ -1,85 +1,59 @@
 import React, { FC, useEffect, useState, lazy, Suspense } from 'react'
 import Browser from './search/Browser'
-import { Subject } from 'rxjs'
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { subject, subscription } from './rxjs-utils';
 import { useWeather } from './hooks/useWeather';
+import { useWeatherState, LOADING, CLEAR_STATE, ERROR, CLEAR_ERROR } from './hooks/useWeatherState';
 const Scores = lazy(() => import('./scores/Scores'))
-
-const subject = new Subject<string>();
-const subscription = subject.pipe(
-    debounceTime(800),
-    distinctUntilChanged()
-)
-
-const initState: WeatherState = {
-    loading: false,
-    error: false,
-    weather: {} as WeatherObj | OneCallWeatherObj
-}
 
 const WEATHER_NOW = process.env.WEATHER_NOW
 const FUTURE_WEATHER = process.env.FUTURE_WEATHER
 const { language } = window.navigator
 
-const WeatherWrapper: FC = () => {
+const getNowEndpoint = (name: string) => `${WEATHER_NOW}${name.length > 1 ? name[0].toUpperCase() + name.slice(1, name.length) :
+    name[0].toUpperCase()}&lang=${language.slice(0, 2)}`
 
-    const [weatherState, setWeatherState] = useState(initState)
+const WeatherWrapper: FC = () => {
     const [weatherType, setWeatherType] = useState<'now' | 'hourly' | 'daily'>('now')
 
     const { changeWeather: updateWeather, changeCityName, cityName } = useWeather()
+    const { weatherState, setWeatherState, getCurrentWeather } = useWeatherState()
 
-    const { loading, weather, error } = weatherState
+    const { loading, isWeather, error } = weatherState
 
     useEffect(() => {
-        subscription.subscribe(val => {
-            if (val.length > 0) {
-                changeCityName(val)
-                getWeather(val)
+        subscription.subscribe(cityNameVal => {
+            if (cityNameVal.length > 0) {
+                changeCityName(cityNameVal)
+                fetchWeather(cityNameVal)
             }
             else {
-                setWeatherState({ loading: false, error: false, weather: {} as WeatherObj })
+                setWeatherState({ type: CLEAR_STATE })
             }
         })
         return () => subject.unsubscribe()
     }, [])
 
-    useEffect(() => {
-        if ('coord' in weather) {
-            const { lat, lon } = weather.coord
-            const ENDPOINT = `${FUTURE_WEATHER}lat=${lat}&lon=${lon}&lang=${language.slice(0, 2)}`
-            lat && fetch(ENDPOINT)
-                .then(res => res.json())
-                .then((res: OneCallWeatherObj) => {
-                    setWeatherState({ error: false, weather: res, loading: false })
-                    updateWeather(res)
-                })
-                .catch(() => {
-                    setWeatherState({ error: true, loading: false, weather: {} as WeatherObj })
-                    throw new Error('Sorry, there is some problem. Try later')
-                })
-        }
-    }, [weather])
-
     const handleInput = (city: string) => {
-        weatherState.error && setWeatherState({ ...weatherState, error: false })
+        error && setWeatherState({type: CLEAR_ERROR})
         subject.next(city)
     }
 
-    const getWeather = (name: string) => {
-        const ENDPOINT = `${WEATHER_NOW}${name.length > 1 ? name[0].toUpperCase() + name.slice(1, name.length) :
-            name[0].toUpperCase()}&lang=${language.slice(0, 2)}`
-        setWeatherState({ ...weatherState, loading: true })
+    const fetchWeather = (name: string) => {
+        const ENDPOINT = getNowEndpoint(name)
+        setWeatherState({ type: LOADING })
         fetch(ENDPOINT)
             .then(res => {
                 if (!res.ok) {
-                    setWeatherState({ ...weatherState, loading: false, error: true })
+                    setWeatherState({ type: ERROR })
                     throw new Error('Invalid name of city');
                 }
                 return res;
             })
             .then(res => res.json())
-            .then((res: WeatherObj) => {
-                setWeatherState({ error: false, weather: res, loading: true })
+            .then(async (res: WeatherObj) => {
+                const ENDPOINT = `${FUTURE_WEATHER}lat=${res.coord.lat}&lon=${res.coord.lon}&lang=${language.slice(0, 2)}`
+                const weather = await getCurrentWeather(ENDPOINT)
+                updateWeather(weather)
                 changeCityName(res.name)
             })
     }
@@ -88,18 +62,20 @@ const WeatherWrapper: FC = () => {
         <div className="content" data-aos="fade-up" data-aos-once="true">
             <h1>Search your area</h1>
             <Browser error={error} loading={loading} handleInputChange={handleInput} />
-            {'daily' in weather && !loading && cityName && <Suspense fallback={<div className='loader'></div>}>
-                <div className='Weather'>
-                    <div className="Weather-nav">
-                        <ul>
-                            <li onClick={() => setWeatherType('now')}>Now</li>
-                            <li onClick={() => setWeatherType('hourly')}>Hourly</li>
-                            <li onClick={() => setWeatherType('daily')}>Daily</li>
-                        </ul>
+            {isWeather && !loading && cityName && (
+                <Suspense fallback={<div className='loader'></div>}>
+                    <div className='Weather'>
+                        <div className="Weather-nav">
+                            <ul>
+                                <li onClick={() => setWeatherType('now')}>Now</li>
+                                <li onClick={() => setWeatherType('hourly')}>Hourly</li>
+                                <li onClick={() => setWeatherType('daily')}>Daily</li>
+                            </ul>
+                        </div>
+                        <Scores weatherType={weatherType} />
                     </div>
-                    <Scores weatherType={weatherType} />
-                </div>
-            </Suspense>}
+                </Suspense>
+            )}
         </div>
     );
 }

@@ -2,7 +2,7 @@ import React, { FC, lazy, useMemo } from 'react'
 import { useWeather } from '../hooks/useWeather';
 import { useMediaQuery } from 'react-responsive';
 const Now = lazy(() => import('./Now'))
-const FutureWeather = lazy(() => import('./helpers/FutureWeather'))
+const FutureWeather = lazy(() => import('./FutureWeather'))
 
 interface ScoresProps {
     weatherType: string,

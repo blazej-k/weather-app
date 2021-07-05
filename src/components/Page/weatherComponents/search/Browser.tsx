@@ -18,15 +18,16 @@ const Browser: FC<BrowserProps> = ({ handleInputChange, error, loading }) => {
         <div className="Browser-wrapper">
             <div className="Browser-search">
                 <form>
-                    <label style={{ display: 'inline' }}>City:
-                    <input
-                        type='search'
-                        value={cityName}
-                        onChange={handleInput}
-                        autoComplete='off'
-                        autoCorrect='off'
-                        autoCapitalize='off'
-                    /></label>
+                    <label>City:
+                        <input
+                            type='search'
+                            value={cityName}
+                            onChange={handleInput}
+                            autoComplete='off'
+                            autoCorrect='off'
+                            autoCapitalize='off'
+                        />
+                    </label>
                 </form>
             </div>
             <div className="Browser-error">

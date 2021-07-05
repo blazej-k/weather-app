@@ -1,8 +1,8 @@
 import React, { CSSProperties, FC, memo, useEffect, useState } from 'react'
-import { useWeather } from '../../hooks/useWeather';
-import IconsComponent from './IconsComponent';
+import { useWeather } from '../hooks/useWeather';
+import IconsComponent from './helpers/IconsComponent';
 import { useMediaQuery } from 'react-responsive'
-import NavWrapper from './NavWrapper';
+import NavWrapper from './helpers/NavWrapper';
 
 
 //FutureWeather for daily and hourly weather

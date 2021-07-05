@@ -1,4 +1,4 @@
-import React, { FC, memo, useEffect, useMemo, useRef, useState } from 'react'
+import React, { FC, memo, useEffect, useMemo, useState } from 'react'
 import { RiCelsiusLine } from 'react-icons/ri';
 import { useWeather } from '../../hooks/useWeather';
 import getIconName from './getIconName';
@@ -17,7 +17,7 @@ const IconWrapper: FC<IconWrapperProps> = ({ element }) => {
     const apiTime = useMemo(() => new Date(element.dt * 1000), [element])
     const [show, setShow] = useState(false)
 
-    const {iconLoader} = useWeather()
+    const { iconLoader } = useWeather()
     const date = useDateValidation(apiTime, typeof temp === 'number' ? 'hourly' : 'daily')
 
     useEffect(() => {
@@ -29,10 +29,10 @@ const IconWrapper: FC<IconWrapperProps> = ({ element }) => {
     return (
         <li>
             {typeof temp === 'number' && apiTime.getHours() === now && <b className='now'>Now</b>}
-            <br/>
+            <br />
             <b>{date}</b><br />
             {Math.round(typeof temp === 'number' ? temp : temp.day)} <RiCelsiusLine /><br />
-            {iconName.length > 0 ? <img src={iconName} alt="weather" /> : <img onLoad={() => setShow(true)} src={iconLoader} alt='loader'/>}
+            {iconName.length > 0 ? <img src={iconName} alt="weather" /> : <img onLoad={() => setShow(true)} src={iconLoader} alt='loader' />}
         </li>
     );
 }

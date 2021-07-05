@@ -56,6 +56,6 @@ interface SnowOrRain {
 interface WeatherState {
   loading: boolean,
   error: boolean,
-  weather: WeatherObj | OneCallWeatherObj
+  isWeather: boolean
 }
 
