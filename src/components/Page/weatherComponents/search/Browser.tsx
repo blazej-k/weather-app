@@ -1,7 +1,7 @@
 import React, { ChangeEvent, FC, useState } from 'react'
 
 interface BrowserProps {
-    error: boolean,
+    error: string,
     loading: boolean,
     handleInputChange: (city: string) => void,
 }
@@ -31,7 +31,7 @@ const Browser: FC<BrowserProps> = ({ handleInputChange, error, loading }) => {
                 </form>
             </div>
             <div className="Browser-error">
-                {error && <b>Wrong name of city({cityName})</b>}
+                {error.length > 0 && <b>{error}</b>}
             </div>
             <div className="Browser-loading">
                 {loading && <div className="loader">Loading...</div>}

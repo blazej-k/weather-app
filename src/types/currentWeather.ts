@@ -55,7 +55,7 @@ interface SnowOrRain {
 
 interface WeatherState {
   loading: boolean,
-  error: boolean,
+  error: string,
   isWeather: boolean
 }
 
