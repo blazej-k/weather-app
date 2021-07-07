@@ -5,8 +5,9 @@ interface Context {
     weather: OneCallWeatherObj,
     iconLoader: string,
     cityName: string
-    changeWeather: (weather: OneCallWeatherObj) => void
+    changeWeather: (weather: OneCallWeatherObj) => void,
     changeCityName: (input: string) => void,
+    getCurrentWeather: (ENDPOINT: string) => Promise<OneCallWeatherObj>
 }
 
 const WeatherProvider: FC = ({ children }) => {
@@ -18,7 +19,18 @@ const WeatherProvider: FC = ({ children }) => {
 
     const changeCityName = (input: string) => setCityName(input)
 
-    const contextValues = useMemo(() => ({weather, changeWeather, changeCityName, iconLoader, cityName}), [weather, iconLoader, cityName])
+    const getCurrentWeather = (ENDPOINT: string) => {
+        const currentWeather = fetch(ENDPOINT)
+            .then(res => res.json())
+            .then((res: OneCallWeatherObj) => {
+                return res
+            })
+        return currentWeather
+    }
+
+    const contextValues = useMemo(() => (
+        { weather, changeWeather, changeCityName, getCurrentWeather, iconLoader, cityName }
+    ), [weather, iconLoader, cityName])
 
     return (
         <WeatherContext.Provider value={contextValues}>
@@ -30,9 +42,10 @@ const WeatherProvider: FC = ({ children }) => {
 
 export default WeatherProvider;
 export const WeatherContext = createContext<Context>({
-    weather: {} as OneCallWeatherObj, 
-    changeWeather: () => {}, 
-    changeCityName: () => {}, 
+    weather: {} as OneCallWeatherObj,
+    changeWeather: () => { },
+    changeCityName: () => { },
+    getCurrentWeather: () => null,
     iconLoader,
     cityName: ''
 })

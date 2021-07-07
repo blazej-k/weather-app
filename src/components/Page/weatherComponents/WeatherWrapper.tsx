@@ -2,7 +2,7 @@ import React, { FC, useEffect, useState, lazy, Suspense, useRef } from 'react'
 import Browser from './search/Browser'
 import { subject, subscription } from './rxjs-utils';
 import { useWeather } from './hooks/useWeather';
-import { useWeatherState, LOADING, CLEAR_STATE, ERROR, CLEAR_ERROR } from './hooks/useWeatherState';
+import { useWeatherState, LOADING, CLEAR_STATE, ERROR, CLEAR_ERROR, SET_WEATHER } from './hooks/useWeatherState';
 const Scores = lazy(() => import('./scores/Scores'))
 
 const WEATHER_NOW = process.env.WEATHER_NOW
@@ -15,12 +15,10 @@ const getWeatherNowEndpoint = (name: string) => `${WEATHER_NOW}${name.length > 1
 const WeatherWrapper: FC = () => {
     const [weatherType, setWeatherType] = useState<'now' | 'hourly' | 'daily'>('now')
 
-    const { changeWeather: updateWeather, changeCityName, cityName } = useWeather()
-    const { weatherState, setWeatherState, getCurrentWeather } = useWeatherState()
+    const { cityName, changeWeather: updateWeather, changeCityName, getCurrentWeather } = useWeather()
+    const { weatherState: { loading, isWeather, error }, setWeatherState } = useWeatherState()
 
     const cityNameRef = useRef(cityName)
-
-    const { loading, isWeather, error } = weatherState
 
     useEffect(() => {
         subscription.subscribe(cityNameVal => {
@@ -51,6 +49,7 @@ const WeatherWrapper: FC = () => {
                 const weather = await getCurrentWeather(ENDPOINT)
                 if (weather) {
                     updateWeather(weather)
+                    setWeatherState({ type: SET_WEATHER })
                     changeCityName(res.name)
                 }
             })

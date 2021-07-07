@@ -36,18 +36,7 @@ const weatherStateReducer = (state: WeatherState, action: WeatherActions) => {
 
 const useWeatherState = () => {
     const [weatherState, setWeatherState] = useReducer(weatherStateReducer, initState)
-
-    const getCurrentWeather = async(ENDPOINT: string) => {
-        const currentWeather = await fetch(ENDPOINT)
-            .then(res => res.json())
-            .then((res: OneCallWeatherObj) => {
-                setWeatherState({ type: SET_WEATHER })
-                return res
-            })
-        return currentWeather
-    }
-
-    return { weatherState, setWeatherState, getCurrentWeather }
+    return { weatherState, setWeatherState }
 }
 
-export { useWeatherState, LOADING, ERROR, CLEAR_STATE, CLEAR_ERROR }
+export { useWeatherState, LOADING, ERROR, CLEAR_STATE, CLEAR_ERROR, SET_WEATHER }
