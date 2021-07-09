@@ -4,17 +4,18 @@ const webpack = require('webpack')
 const ErrorOverlayPlugin = require('error-overlay-webpack-plugin')
 const Dotenv = require('dotenv-webpack');
 
-module.exports = () => {
+module.exports = env => {
     return {
         entry: '/src/index.tsx',
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: 'bundle.js'
+            filename: 'bundle.js',
+            chunkFilename: '[id].js',
         },
         resolve: {
             extensions: [".ts", ".tsx", ".js"]
         },
-        devtool: 'cheap-module-source-map',
+        devtool: !env.production && 'eval',
         module: {
             rules: [
                 {

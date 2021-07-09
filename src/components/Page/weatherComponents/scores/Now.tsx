@@ -3,6 +3,7 @@ import { RiCelsiusLine } from 'react-icons/ri'
 import useDateValidation from '../hooks/useDateValidation'
 import getIconName from './helpers/getIconName'
 import { useWeather } from '../hooks/useWeather'
+import { Suspense } from 'react'
 
 
 const Now: FC = () => {
@@ -24,9 +25,9 @@ const Now: FC = () => {
     return (
         <div className='Weather-now' data-aos="fade-up" data-aos-once={true}>
             <div className="main">
-                <h1>{Math.round(temp)}<RiCelsiusLine /></h1>
+                <h1>{Math.round(temp)}<Suspense fallback={<div>loading...</div>}><RiCelsiusLine/></Suspense></h1>
                 <div className='info-feels-temp'>
-                    Feels like {Math.round(weather.current.feels_like)}<RiCelsiusLine />
+                    Feels like {Math.round(weather.current.feels_like)}<Suspense fallback={<div>loading...</div>}><RiCelsiusLine/></Suspense>
                 </div>
             </div>
             <h2 className="description">

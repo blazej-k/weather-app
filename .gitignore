@@ -9,4 +9,6 @@ city.list.json
 myapikey
 .env
 
-.DS_Store  
+#others
+.DS_Store
+package-lock.json
