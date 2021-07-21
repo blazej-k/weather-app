@@ -1,3 +1,12 @@
+.loader-wrapper {
+    animation: showWithDelay 0s 0.4s forwards;
+    opacity: 0;
+}
+
+@keyframes showWithDelay {
+    to { opacity: 1; }
+  }
+
 .loader {
     color: #ffff;
     font-size: 90px;
