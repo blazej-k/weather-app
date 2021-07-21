@@ -4,7 +4,7 @@ import { subject, subscription } from './rxjs-utils';
 import { useWeather } from './hooks/useWeather';
 import { useWeatherState, LOADING, CLEAR_STATE, ERROR, CLEAR_ERROR, SET_WEATHER } from './hooks/useWeatherState';
 
-const loadScores = () => import( /*webpackChunkName: 'Scores'*/ './scores/Scores')
+const loadScores = () => import('./scores/Scores')
 const Scores = lazy(loadScores)
 
 const WEATHER_NOW = process.env.WEATHER_NOW

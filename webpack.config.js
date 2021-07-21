@@ -6,11 +6,14 @@ const Dotenv = require('dotenv-webpack');
 
 module.exports = env => {
     return {
-        entry: '/src/index.tsx',
+        entry: {
+            index: '/src/index.tsx',
+        },
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: 'bundle.js',
-            chunkFilename: '[id].js',
+            publicPath: '/',
+            chunkFilename: '[name].js',
         },
         resolve: {
             extensions: [".ts", ".tsx", ".js"]
@@ -37,7 +40,7 @@ module.exports = env => {
                 },
                 {
                     test: /\.(png$|jpe?g|gif)$/i,
-                    use: [ 
+                    use: [
                         {
                             loader: 'file-loader',
                             options: {
@@ -45,14 +48,25 @@ module.exports = env => {
                                 outputPath: 'assets/images/',
                                 publicPath: 'assets/images/'
                             }
-                        }
-                    ]
+                        },
+                        {
+                            loader: 'image-webpack-loader',
+                            options: {
+                                mozjpeg: {
+                                    progressive: true,
+                                },
+                                // optipng.enabled: false will disable optipng
+                                optipng: {
+                                    enabled: false,
+                                },
+                                pngquant: {
+                                    quality: [0.65, 0.90],
+                                    speed: 4
+                                },
+                            }
+                        },
+                    ],
                 },
-                {
-                    test: /\.json/i,
-                    loader: 'json5-loader',
-                    type: 'javascript/auto',
-                  },
             ],
         },
         plugins: [
