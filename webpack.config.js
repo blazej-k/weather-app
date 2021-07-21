@@ -7,12 +7,11 @@ const Dotenv = require('dotenv-webpack');
 module.exports = env => {
     return {
         entry: {
-            index: '/src/index.tsx',
+            index: './src/index.tsx',
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: 'bundle.js',
-            publicPath: '/',
             chunkFilename: '[name].js',
         },
         resolve: {
