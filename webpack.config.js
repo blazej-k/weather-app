@@ -18,7 +18,7 @@ module.exports = env => {
         resolve: {
             extensions: [".ts", ".tsx", ".js"]
         },
-        devtool: !env.production && 'eval-source-map',
+        devtool: !env.production && env.devtool,
         module: {
             rules: [
                 {
