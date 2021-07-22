@@ -3,11 +3,13 @@ import { RiCelsiusLine } from 'react-icons/ri'
 import useDateValidation from '../hooks/useDateValidation'
 import getIconName from './helpers/getIconName'
 import { useWeather } from '../hooks/useWeather'
+import loader from '../../../../assets/icons/loader.png'
 
+const mode = process.env.NODE_ENV
 
 const Now: FC = () => {
 
-    const [iconName, setIconName] = useState('assets/icons/loader.png')
+    const [iconName, setIconName] = useState(loader)
     const { weather } = useWeather()
 
     const { temp, sunset, sunrise, wind_speed, pressure, clouds, visibility, uvi, humidity } = useMemo(() => weather.current, [weather])

@@ -2,14 +2,19 @@ import React, { FC, memo, useEffect, useMemo, useState } from 'react'
 import { RiCelsiusLine } from 'react-icons/ri';
 import getIconName from './getIconName';
 import useDateValidation from '../../hooks/useDateValidation';
+import loader from '../../../../../assets/icons/loader.png'
 
 interface IconWrapperProps {
     element: Daily | Hourly,
 }
 
+const mode = process.env.NODE_ENV
+
 const IconWrapper: FC<IconWrapperProps> = ({ element }) => {
 
-    const [iconName, setIconName] = useState('assets/icons/loader.png')
+    //przetestowac iconLoader i process.env.NODE_ENV
+
+    const [iconName, setIconName] = useState(loader)
 
     const { temp } = useMemo(() => element, [element])
     const now = useMemo(() => new Date().getHours(), [])

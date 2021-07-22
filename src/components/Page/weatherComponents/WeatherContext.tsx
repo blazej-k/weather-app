@@ -1,9 +1,7 @@
 import React, { createContext, FC, useMemo, useState } from 'react'
-import iconLoader from '../../../assets/icons/loader.png'
 
 interface Context {
     weather: OneCallWeatherObj,
-    iconLoader: string,
     cityName: string
     changeWeather: (weather: OneCallWeatherObj, newCityName: string) => void,
     getCurrentWeather: (ENDPOINT: string) => Promise<OneCallWeatherObj>
@@ -29,8 +27,8 @@ const WeatherProvider: FC = ({ children }) => {
     }
 
     const contextValues = useMemo(() => (
-        { weather, changeWeather, getCurrentWeather, iconLoader, cityName }
-    ), [weather, iconLoader, cityName])
+        { weather, changeWeather, getCurrentWeather, cityName }
+    ), [weather, cityName])
 
     return (
         <WeatherContext.Provider value={contextValues}>
@@ -45,6 +43,5 @@ export const WeatherContext = createContext<Context>({
     weather: {} as OneCallWeatherObj,
     changeWeather: () => { },
     getCurrentWeather: () => null,
-    iconLoader,
     cityName: ''
 })

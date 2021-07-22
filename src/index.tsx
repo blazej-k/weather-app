@@ -2,13 +2,15 @@ import React, { FC, lazy, useEffect } from 'react'
 import ReactDOM from 'react-dom'
 import Aos from 'aos'
 import MetaTags from 'react-meta-tags'
-import * as faviconIco from './assets/images/logo.png'
+import faviconIco from './assets/images/logo.png'
+import { Suspense } from 'react'
+import loader from './assets/icons/loader.png'
 import 'aos/dist/aos.css';
 import './style/main.scss';
-import { Suspense } from 'react'
 
 const Page = lazy(() => import('./components/Page'))
 
+const mode = process.env.NODE_ENV
 
 const App: FC = () => {
 
@@ -26,6 +28,7 @@ const App: FC = () => {
                 <meta charSet="utf-8" />
                 <meta name='viewport' content='width=device-width, initial-scale=1.0' />
                 <link rel="shortcut icon" href={faviconIco} />
+                <link rel="prefetch" as='image' href={loader}/>
             </MetaTags>
             <Suspense fallback={<p>loading</p>}>
                 <Page />
