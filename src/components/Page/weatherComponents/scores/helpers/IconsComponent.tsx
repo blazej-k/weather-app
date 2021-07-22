@@ -8,11 +8,7 @@ interface IconWrapperProps {
     element: Daily | Hourly,
 }
 
-const mode = process.env.NODE_ENV
-
 const IconWrapper: FC<IconWrapperProps> = ({ element }) => {
-
-    //przetestowac iconLoader i process.env.NODE_ENV
 
     const [iconName, setIconName] = useState(loader)
 

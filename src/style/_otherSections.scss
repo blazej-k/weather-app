@@ -36,12 +36,18 @@
     border-top: 0.5px solid white;
     margin-top: 90px;
 }
-.slider {
+.slider-wrapper {
     width: 60%;
     margin: 45px auto;
-    overflow: hidden;
-    border-radius: 45px;
     img {
         opacity: 0.8;
+    }
+    .slider{
+        width: 100%;
+        overflow: hidden;
+        border-radius: 45px;
+        transform: translateZ(0);
+        opacity: 0;
+        transition: all 1s;
     }
 }

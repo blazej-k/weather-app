@@ -1,16 +1,13 @@
-import React, { FC, lazy, useEffect } from 'react'
+import React, { FC, lazy, useEffect, Suspense } from 'react'
 import ReactDOM from 'react-dom'
 import Aos from 'aos'
 import MetaTags from 'react-meta-tags'
 import faviconIco from './assets/images/logo.png'
-import { Suspense } from 'react'
 import loader from './assets/icons/loader.png'
 import 'aos/dist/aos.css';
 import './style/main.scss';
 
 const Page = lazy(() => import('./components/Page'))
-
-const mode = process.env.NODE_ENV
 
 const App: FC = () => {
 

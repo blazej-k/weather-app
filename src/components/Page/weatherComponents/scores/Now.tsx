@@ -5,8 +5,6 @@ import getIconName from './helpers/getIconName'
 import { useWeather } from '../hooks/useWeather'
 import loader from '../../../../assets/icons/loader.png'
 
-const mode = process.env.NODE_ENV
-
 const Now: FC = () => {
 
     const [iconName, setIconName] = useState(loader)
