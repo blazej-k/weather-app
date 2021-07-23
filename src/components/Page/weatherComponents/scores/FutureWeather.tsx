@@ -15,30 +15,12 @@ interface FutureWeatherProps {
 
 const FutureWeather: FC<FutureWeatherProps> = ({ type, showingArrayLength, fullLengthOfArray }) => {
 
-    let weather = useWeather().weather[type]
+    let { weather: response } = useWeather()
+    const weather = response[type]
     const mobileDevice = useMediaQuery({ query: '(max-width: 750px)' }) //when it's true daily have slider(4 icons) if false there's no
     // and hourly have 4 iconic slider instead 8
     const [index, setIndex] = useState(showingArrayLength) //this is the last index of showing array
     const [style, setStyle] = useState<CSSProperties>({ transform: 'translateX(0px)' }) //ul has this style when the weather has slider
-
-    if (type === 'hourly') weather = weather.slice(0, 24)
-
-    const handleButton = (buttonType: string) => {
-        setStyle({
-            transform: `translateX(${buttonType === 'next' ? '60px' : '-60px'})`,
-            opacity: 0,
-            transition: '0s'
-        })
-        if ((buttonType === 'next') && (index + showingArrayLength > weather.length)){
-            setIndex(showingArrayLength)
-        } 
-        else if ((buttonType === 'prev') && (index - showingArrayLength <= 0)){
-            setIndex(fullLengthOfArray)
-        }
-        else {
-            setIndex(prev => buttonType === 'next' ? prev + showingArrayLength : prev - showingArrayLength)
-        }
-    }
 
     useEffect(() => {
         if (style.opacity === 0) {
@@ -49,6 +31,23 @@ const FutureWeather: FC<FutureWeatherProps> = ({ type, showingArrayLength, fullL
             })
         }
     }, [style])
+
+    const handleButton = (buttonType: string) => {
+        setStyle({
+            transform: `translateX(${buttonType === 'next' ? '60px' : '-60px'})`,
+            opacity: 0,
+            transition: '0s'
+        })
+        if ((buttonType === 'next') && (index + showingArrayLength > weather.length)) {
+            setIndex(showingArrayLength)
+        }
+        else if ((buttonType === 'prev') && (index - showingArrayLength <= 0)) {
+            setIndex(fullLengthOfArray)
+        }
+        else {
+            setIndex(prev => buttonType === 'next' ? prev + showingArrayLength : prev - showingArrayLength)
+        }
+    }
 
     return (
         <div className={`Weather-${type}`} data-aos="fade-up" data-aos-once={true}>
@@ -61,14 +60,14 @@ const FutureWeather: FC<FutureWeatherProps> = ({ type, showingArrayLength, fullL
                             key={hour.dt}
                             element={hour}
                         />) : mobileDevice ?
-                        (weather as Daily[]).slice(index - showingArrayLength, index).map((day: Daily) => <IconsComponent
-                            key={day.dt}
-                            element={day}
-                        />) :
-                        (weather as Daily[]).map((day: Daily) => <IconsComponent
-                            key={day.dt}
-                            element={day}
-                        />)
+                            (weather as Daily[]).slice(index - showingArrayLength, index).map((day: Daily) => <IconsComponent
+                                key={day.dt}
+                                element={day}
+                            />) :
+                            (weather as Daily[]).map((day: Daily) => <IconsComponent
+                                key={day.dt}
+                                element={day}
+                            />)
                     }
                 </ul>
             </div>

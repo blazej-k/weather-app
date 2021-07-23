@@ -1,4 +1,4 @@
-import React, { FC, memo, useEffect, useState } from 'react'
+import React, { FC, memo, useState } from 'react'
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/scss/image-gallery.scss"
 

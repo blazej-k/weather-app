@@ -13,6 +13,7 @@ const WeatherProvider: FC = ({ children }) => {
     const [cityName, setCityName] = useState('')
 
     const changeWeather = (weather: OneCallWeatherObj, newCityName: string) => {
+        weather.hourly.slice(0, 24)
         setWeather(weather)
         setCityName(newCityName)
     }
