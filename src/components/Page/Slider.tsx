@@ -33,17 +33,13 @@ const Slider: FC = () => {
     return (
         <>
             <div className="slider-wrapper">
-                {!showSlider && 
-                    <div className='loader-wrapper'>
-                        <div className="loader"></div>
-                    </div>
-                }
+                {!showSlider && <div className="loader delay"></div>}
                 <div style={{ opacity: showSlider ? 1 : 0 }} className='slider'>
                     <ImageGallery
                         items={images}
                         infinite={true}
                         showThumbnails={false}
-                        // autoPlay={true}
+                        autoPlay={true}
                         showBullets={true}
                         showFullscreenButton={false}
                         showNav={false}

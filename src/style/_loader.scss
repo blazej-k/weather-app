@@ -1,11 +1,6 @@
-.loader-wrapper {
-    animation: showWithDelay 0s 0.4s forwards;
-    opacity: 0;
+.delay{
+    animation-delay: .4s !important;
 }
-
-@keyframes showWithDelay {
-    to { opacity: 1; }
-  }
 
 .loader {
     color: #ffff;
@@ -99,3 +94,7 @@
         transform: rotate(360deg);
     }
 }
+
+@keyframes showWithDelay {
+    to { opacity: 1; }
+  }

@@ -27,7 +27,7 @@ const App: FC = () => {
                 <link rel="shortcut icon" href={faviconIco} />
                 <link rel="prefetch" as='image' href={loader}/>
             </MetaTags>
-            <Suspense fallback={<p>loading</p>}>
+            <Suspense fallback={null}>
                 <Page />
             </Suspense>
         </>
