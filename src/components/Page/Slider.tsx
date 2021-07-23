@@ -7,28 +7,26 @@ interface ImagesAdresses {
     originalAlt: 'slider-image'
 }
 
+let images: ImagesAdresses[]
+const getSlides = async () => {
+    const photoNumbers: number[] = []
+    const imagesArr: ImagesAdresses[] = []
+    for (let i = 0; i < 5;) {
+        const number = Math.floor(Math.random() * 8) + 1
+        if (photoNumbers.indexOf(number) === -1) {
+            photoNumbers.push(number)
+            await import(`../../assets/images/slider/img${number}.jpg`)
+                .then(res => imagesArr.push({ original: res.default, originalAlt: 'slider-image' }))
+                .then(() => i++)
+        }
+    }
+    return imagesArr
+}
+getSlides().then(res => images = res)
+
 const Slider: FC = () => {
 
-    const [images, setImages] = useState<ImagesAdresses[]>([])
     const [showSlider, setShowSlider] = useState(false)
-
-    useEffect(() => {
-        const getSlides = async () => {
-            const photoNumbers: number[] = []
-            const imagesArr: ImagesAdresses[] = []
-            for (let i = 0; i < 5;) {
-                const number = Math.floor(Math.random() * 8) + 1
-                if (photoNumbers.indexOf(number) === -1) {
-                    photoNumbers.push(number)
-                    await import(`../../assets/images/slider/img${number}.jpg`)
-                        .then(res => imagesArr.push({ original: res.default, originalAlt: 'slider-image' }))
-                        .then(() => i++)
-                }
-            }
-            setImages(imagesArr)
-        }
-        getSlides()
-    }, [])
 
     return (
         <>
