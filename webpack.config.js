@@ -54,7 +54,6 @@ module.exports = env => {
                                 mozjpeg: {
                                     progressive: true,
                                 },
-                                // optipng.enabled: false will disable optipng
                                 optipng: {
                                     enabled: false,
                                 },

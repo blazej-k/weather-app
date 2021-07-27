@@ -17,8 +17,9 @@ const Browser: FC<BrowserProps> = ({ handleInputChange, error, loading }) => {
     return (
         <div className="Browser-wrapper">
             <div className="Browser-search">
-                <form>
-                    <label>City:
+                <form onSubmit={e => e.preventDefault()}>
+                    <label>
+                        City:
                         <input
                             type='search'
                             value={cityName}
